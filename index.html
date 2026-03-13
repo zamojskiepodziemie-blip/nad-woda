@@ -9,7 +9,8 @@
 :root{--bg:#fafaf5;--border:2px solid #000;--shadow:4px 4px 0 #000;--shadow-hover:2px 2px 0 #000;--accent:#FFE500;--text:#000}
 body{background:var(--bg) url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200') center/cover no-repeat fixed;font-family:'Inter',system-ui,sans-serif;color:var(--text);min-height:100vh}
 header{background:var(--accent);border-bottom:var(--border);padding:1.5rem;text-align:center;box-shadow:var(--shadow)}
-header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing:2px}
+header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing:2px;animation:wave 2s ease-in-out infinite;display:inline-block}
+@keyframes wave{0%,100%{transform:translateY(0)}25%{transform:translateY(-5px)}50%{transform:translateY(0)}75%{transform:translateY(5px)}}
 .container{max-width:800px;margin:0 auto;padding:1.5rem}
 .map-box{background:#fff;border:var(--border);padding:1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
 .map-title{text-align:center;font-weight:900;font-size:1.2rem;margin-bottom:1rem;text-transform:uppercase}
