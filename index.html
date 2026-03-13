@@ -16,7 +16,7 @@ header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing
 .map-title{text-align:center;font-weight:900;font-size:1.2rem;margin-bottom:1rem;text-transform:uppercase}
 path{cursor:pointer;transition:all 0.2s}
 .woj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:500px;margin:0 auto}
-.woj{padding:15px 5px;text-align:center;font-weight:700;font-size:0.55rem;cursor:pointer;border:2px solid #000;height:80px;display:flex;align-items:center;justify-content:center}
+.woj{padding:15px 5px;text-align:center;font-weight:700;font-size:0.55rem;cursor:pointer;border:2px solid #000;height:80px;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;color:#fff;text-shadow:1px 1px 2px #000}
 .woj:hover{opacity:0.8}
 text{font-weight:bold;text-anchor:middle;pointer-events:none}
 svg{width:100%;height:auto}
@@ -65,22 +65,22 @@ path:hover{fill:var(--accent);transform:translate(-2px,-2px)}
 <div id="mapaWidok" class="map-box">
 <h2 class="map-title">WYBIERZ WOJEWÓDZTWO</h2>
 <div class="woj-grid">
-<div class="woj" style="background:#98D8AA" onclick="wybierzWoj('zachodniopomorskie')">🐟 ZACHODNIOPOMORSKIE</div>
-<div class="woj" style="background:#FFB7B2" onclick="wybierzWoj('pomorskie')">🐟 POMORSKIE</div>
-<div class="woj" style="background:#B5EAD7" onclick="wybierzWoj('warminsko-mazurskie')">🐟 WARMIŃSKO-MAZURSKIE</div>
-<div class="woj" style="background:#E2F0CB" onclick="wybierzWoj('podlaskie')">🐟 PODLASKIE</div>
-<div class="woj" style="background:#FFDAC1" onclick="wybierzWoj('lubuskie')">🐟 LUBUSKIE</div>
-<div class="woj" style="background:#C7CEEA" onclick="wybierzWoj('wielkopolskie')">🐟 WIELKOPOLSKIE</div>
-<div class="woj" style="background:#97C1A9" onclick="wybierzWoj('kujawsko-pomorskie')">🐟 KUJAWSKO-POMORSKIE</div>
-<div class="woj" style="background:#FF9AA2" onclick="wybierzWoj('mazowieckie')">🐟 MAZOWIECKIE</div>
-<div class="woj" style="background:#E0BBE4" onclick="wybierzWoj('dolnoslaskie')">🐟 DOLNOŚLĄSKIE</div>
-<div class="woj" style="background:#957DAD" onclick="wybierzWoj('opolskie')">🐟 OPOLSKIE</div>
-<div class="woj" style="background:#DECBC6" onclick="wybierzWoj('lodzkie')">🐟 ŁÓDZKIE</div>
-<div class="woj" style="background:#81B29A" onclick="wybierzWoj('lubelskie')">🐟 LUBELSKIE</div>
-<div class="woj" style="background:#F4E1D2" onclick="wybierzWoj('slaskie')">🐟 ŚLĄSKIE</div>
-<div class="woj" style="background:#A0E7E5" onclick="wybierzWoj('swietokrzyskie')">🐟 ŚWIĘTOKRZYSKIE</div>
-<div class="woj" style="background:#FBE7C6" onclick="wybierzWoj('malopolskie')">🐟 MAŁOPOLSKIE</div>
-<div class="woj" style="background:#B4F8C8" onclick="wybierzWoj('podkarpackie')">🐟 PODKARPACKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,00.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400')" onclick="wybierzWoj('zachodniopomorskie')">🐟 ZACHODNIOPOMORSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=400')" onclick="wybierzWoj('pomorskie')">🐟 POMORSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400')" onclick="wybierzWoj('warminsko-mazurskie')">🐟 WARMIŃSKO-MAZURSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=400')" onclick="wybierzWoj('podlaskie')">🐟 PODLASKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1505506874110-6a7a69069a08?w=400')" onclick="wybierzWoj('lubuskie')">🐟 LUBUSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=400')" onclick="wybierzWoj('wielkopolskie')">🐟 WIELKOPOLSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400')" onclick="wybierzWoj('kujawsko-pomorskie')">🐟 KUJAWSKO-POMORSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=400')" onclick="wybierzWoj('mazowieckie')">🐟 MAZOWIECKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400')" onclick="wybierzWoj('dolnoslaskie')">🐟 DOLNOŚLĄSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=400')" onclick="wybierzWoj('opolskie')">🐟 OPOLSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1505506874110-6a7a69069a08?w=400')" onclick="wybierzWoj('lodzkie')">🐟 ŁÓDZKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=400')" onclick="wybierzWoj('lubelskie')">🐟 LUBELSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400')" onclick="wybierzWoj('slaskie')">🐟 ŚLĄSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=400')" onclick="wybierzWoj('swietokrzyskie')">🐟 ŚWIĘTOKRZYSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400')" onclick="wybierzWoj('malopolskie')">🐟 MAŁOPOLSKIE</div>
+<div class="woj" style="background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=400')" onclick="wybierzWoj('podkarpackie')">🐟 PODKARPACKIE</div>
 </div>
 </div>
 <div id="puste" class="puste"><h2>🎣 WITAJ W "NAD WODĄ"</h2><p>Kliknij na mapie w województwo, aby zobaczyć łowiska</p></div>
