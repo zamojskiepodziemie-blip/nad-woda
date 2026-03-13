@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#fafaf5;--border:2px solid #000;--shadow:4px 4px 0 #000;--shadow-hover:2px 2px 0 #000;--accent:#FFE500;--text:#000}
-body{background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--text);min-height:100vh}
+body{background:var(--bg) url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200') center/cover no-repeat fixed;font-family:'Inter',system-ui,sans-serif;color:var(--text);min-height:100vh}
 header{background:var(--accent);border-bottom:var(--border);padding:1.5rem;text-align:center;box-shadow:var(--shadow)}
 header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing:2px}
 .container{max-width:800px;margin:0 auto;padding:1.5rem}
@@ -102,5 +102,6 @@ document.getElementById('mRyby').innerHTML=ryby;if(wybrane.t==='paid'){document.
 document.getElementById('mGodziny').innerText=wybrane.h;document.getElementById('mLokal').innerText=wybrane.l;document.getElementById('mTrasa').href='https://www.google.com/maps/dir/?api=1&destination='+wybrane.la+','+wybrane.lo;document.getElementById('modal').classList.add('aktywna');}
 function zamknijModal(){document.getElementById('modal').classList.remove('aktywna');}
 document.querySelectorAll('svg path').forEach(function(path){path.addEventListener('click',function(){var w=this.getAttribute('onclick').match(/'([^']+)'/);if(w)wybierzWoj(w[1]);});});
-</script>< / b o d y > < / h t m l >  
+</script>< / b o d y > < / h t m l > 
+ 
  
