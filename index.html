@@ -107,6 +107,7 @@ document.getElementById('mRyby').innerHTML=ryby;if(wybrane.t==='paid'){document.
 document.getElementById('mGodziny').innerText=wybrane.h;document.getElementById('mLokal').innerText=wybrane.l;document.getElementById('mTrasa').href='https://www.google.com/maps/dir/?api=1&destination='+wybrane.la+','+wybrane.lo;document.getElementById('modal').classList.add('aktywna');}
 function zamknijModal(){document.getElementById('modal').classList.remove('aktywna');}
 document.querySelectorAll('svg path').forEach(function(path){path.addEventListener('click',function(){var w=this.getAttribute('onclick').match(/'([^']+)'/);if(w)wybierzWoj(w[1]);});});
+document.querySelectorAll('.woj').forEach(function(el){el.addEventListener('click',function(){var w=this.getAttribute('onclick').match(/'([^']+)'/);if(w)wybierzWoj(w[1]);});});
 </script>< / b o d y > < / h t m l > 
  
  
