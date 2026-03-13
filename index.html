@@ -14,15 +14,12 @@ header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing
 .map-box{background:#fff;border:var(--border);padding:1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
 .map-title{text-align:center;font-weight:900;font-size:1.2rem;margin-bottom:1rem;text-transform:uppercase}
 path{cursor:pointer;transition:all 0.2s}
-path:hover{transform:scale(1.02);filter:brightness(1.1)}
-text{font-size:6px;font-weight:900;text-anchor:middle;pointer-events:none}
+path:hover{filter:brightness(1.1)}
+text{font-weight:bold;text-anchor:middle;pointer-events:none}
+.woj-grid{display:none}
 svg{width:100%;height:auto}
-path{cursor:pointer;fill:#fff;stroke:#000;stroke-width:2;transition:all 0.1s}
+path{fill:#fff;stroke:#000;stroke-width:2;transition:all 0.1s}
 path:hover{fill:var(--accent);transform:translate(-2px,-2px)}
-text{font-size:6px;fill:#000;font-weight:900;text-anchor:middle;pointer-events:none}
-.woj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;max-width:350px;margin:0 auto}
-.woj{padding:12px 6px;text-align:center;font-weight:700;font-size:0.6rem;cursor:pointer;border:2px solid #000;box-shadow:3px 3px 0 #000}
-.woj:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
 .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
 .btn{padding:1rem;border:var(--border);background:#fff;font-weight:900;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow);transition:all 0.1s;font-size:0.9rem}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
@@ -65,24 +62,57 @@ text{font-size:6px;fill:#000;font-weight:900;text-anchor:middle;pointer-events:n
 <div class="container">
 <div id="mapaWidok" class="map-box">
 <h2 class="map-title">WYBIERZ WOJEWÓDZTWO</h2>
-<div class="woj-grid">
-<div class="woj" style="background:#ff6b6b" onclick="wybierzWoj('zachodniopomorskie')">ZACHODNIOPOMORSKIE</div>
-<div class="woj" style="background:#4ecdc4" onclick="wybierzWoj('pomorskie')">POMORSKIE</div>
-<div class="woj" style="background:#45b7d1" onclick="wybierzWoj('warminsko-mazurskie')">WARMIŃSKO-MAZURSKIE</div>
-<div class="woj" style="background:#96ceb4" onclick="wybierzWoj('podlaskie')">PODLASKIE</div>
-<div class="woj" style="background:#ffeaa7" onclick="wybierzWoj('lubuskie')">LUBUSKIE</div>
-<div class="woj" style="background:#dfe6e9" onclick="wybierzWoj('wielkopolskie')">WIELKOPOLSKIE</div>
-<div class="woj" style="background:#a29bfe" onclick="wybierzWoj('kujawsko-pomorskie')">KUJAWSKO-POMORSKIE</div>
-<div class="woj" style="background:#fd79a8" onclick="wybierzWoj('mazowieckie')">MAZOWIECKIE</div>
-<div class="woj" style="background:#fdcb6e" onclick="wybierzWoj('dolnoslaskie')">DOLNOŚLĄSKIE</div>
-<div class="woj" style="background:#e17055" onclick="wybierzWoj('opolskie')">OPOLSKIE</div>
-<div class="woj" style="background:#00b894" onclick="wybierzWoj('lodzkie')">ŁÓDZKIE</div>
-<div class="woj" style="background:#6c5ce7" onclick="wybierzWoj('lubelskie')">LUBELSKIE</div>
-<div class="woj" style="background:#e84393" onclick="wybierzWoj('slaskie')">ŚLĄSKIE</div>
-<div class="woj" style="background:#00cec9" onclick="wybierzWoj('swietokrzyskie')">ŚWIĘTOKRZYSKIE</div>
-<div class="woj" style="background:#ff7675" onclick="wybierzWoj('malopolskie')">MAŁOPOLSKIE</div>
-<div class="woj" style="background:#74b9ff" onclick="wybierzWoj('podkarpackie')">PODKARPACKIE</div>
-</div>
+<svg viewBox="0 0 440 320" style="width:100%;max-width:500px">
+<!-- Zachodniopomorskie -->
+<path d="M30,60 L90,50 L110,85 L100,130 L55,145 L20,115 Z" fill="#98D8AA" stroke="#000" stroke-width="1" onclick="wybierzWoj('zachodniopomorskie')"/>
+<text x="60" y="105" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">ZACHODNIOPOMORSKIE</text>
+<!-- Pomorskie -->
+<path d="M110,35 L170,25 L185,65 L170,105 L115,100 L95,65 Z" fill="#FFB7B2" stroke="#000" stroke-width="1" onclick="wybierzWoj('pomorskie')"/>
+<text x="140" y="70" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">POMORSKIE</text>
+<!-- Warmińsko-mazurskie -->
+<path d="M175,25 L245,20 L260,60 L240,100 L185,95 L170,55 Z" fill="#B5EAD7" stroke="#000" stroke-width="1" onclick="wybierzWoj('warminsko-mazurskie')"/>
+<text x="215" y="60" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">WARMIŃSKO</text>
+<text x="215" y="70" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">MAZURSKIE</text>
+<!-- Podlaskie -->
+<path d="M250,20 L340,15 L360,55 L340,90 L260,85 L245,45 Z" fill="#E2F0CB" stroke="#000" stroke-width="1" onclick="wybierzWoj('podlaskie')"/>
+<text x="300" y="55" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">PODLASKIE</text>
+<!-- Lubuskie -->
+<path d="M25,105 L85,95 L105,145 L75,190 L20,180 Z" fill="#FFDAC1" stroke="#000" stroke-width="1" onclick="wybierzWoj('lubuskie')"/>
+<text x="60" y="145" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">LUBUSKIE</text>
+<!-- Wielkopolskie -->
+<path d="M90,90 L155,80 L175,140 L150,195 L100,200 L70,150 Z" fill="#C7CEEA" stroke="#000" stroke-width="1" onclick="wybierzWoj('wielkopolskie')"/>
+<text x="120" y="140" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">WIELKOPOLSKIE</text>
+<!-- Kujawsko-pomorskie -->
+<path d="M160,75 L220,65 L240,115 L215,160 L170,165 L155,120 Z" fill="#97C1A9" stroke="#000" stroke-width="1" onclick="wybierzWoj('kujawsko-pomorskie')"/>
+<text x="195" y="115" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">KUJAWSKO</text>
+<!-- Mazowieckie -->
+<path d="M180,90 L260,80 L300,145 L275,210 L210,220 L170,160 Z" fill="#FF9AA2" stroke="#000" stroke-width="1" onclick="wybierzWoj('mazowieckie')"/>
+<text x="235" y="150" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">MAZOWIECKIE</text>
+<!-- Dolnośląskie -->
+<path d="M55,175 L115,165 L140,220 L115,275 L60,270 L40,225 Z" fill="#E0BBE4" stroke="#000" stroke-width="1" onclick="wybierzWoj('dolnoslaskie')"/>
+<text x="90" y="220" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">DOLNOŚLĄSKIE</text>
+<!-- Opolskie -->
+<path d="M120,160 L175,155 L195,215 L175,265 L130,260 L115,215 Z" fill="#957DAD" stroke="#000" stroke-width="1" onclick="wybierzWoj('opolskie')"/>
+<text x="155" y="210" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">OPOLSKIE</text>
+<!-- Łódzkie -->
+<path d="M175,145 L250,135 L280,200 L255,265 L195,270 L165,210 Z" fill="#DECBC6" stroke="#000" stroke-width="1" onclick="wybierzWoj('lodzkie')"/>
+<text x="220" y="205" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">ŁÓDZKIE</text>
+<!-- Lubelskie -->
+<path d="M265,150 L350,140 L390,220 L365,295 L295,305 L260,230 Z" fill="#81B29A" stroke="#000" stroke-width="1" onclick="wybierzWoj('lubelskie')"/>
+<text x="325" y="225" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">LUBELSKIE</text>
+<!-- Śląskie -->
+<path d="M135,210 L195,205 L220,260 L195,305 L145,295 L125,255 Z" fill="#F4E1D2" stroke="#000" stroke-width="1" onclick="wybierzWoj('slaskie')"/>
+<text x="170" y="255" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">ŚLĄSKIE</text>
+<!-- Świętokrzyskie -->
+<path d="M210,205 L280,195 L305,255 L280,310 L230,315 L205,265 Z" fill="#A0E7E5" stroke="#000" stroke-width="1" onclick="wybierzWoj('swietokrzyskie')"/>
+<text x="255" y="255" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">ŚWIĘTOKRZYSKIE</text>
+<!-- Małopolskie -->
+<path d="M165,285 L235,280 L270,335 L245,375 L195,365 L160,330 Z" fill="#FBE7C6" stroke="#000" stroke-width="1" onclick="wybierzWoj('malopolskie')"/>
+<text x="215" y="325" font-size="7" font-weight="bold" text-anchor="middle" fill="#000">MAŁOPOLSKIE</text>
+<!-- Podkarpackie -->
+<path d="M245,295 L325,285 L365,360 L335,395 L290,380 L255,345 Z" fill="#B4F8C8" stroke="#000" stroke-width="1" onclick="wybierzWoj('podkarpackie')"/>
+<text x="310" y="340" font-size="6" font-weight="bold" text-anchor="middle" fill="#000">PODKARPACKIE</text>
+</svg>
 </div>
 <div id="puste" class="puste"><h2>🎣 WITAJ W "NAD WODĄ"</h2><p>Kliknij na mapie w województwo, aby zobaczyć łowiska</p></div>
 <button id="wstecz" class="back-btn hidden" onclick="wroc()">← WROC DO MAPY</button>
