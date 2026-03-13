@@ -10,9 +10,9 @@ body{font-family:'Inter',system-ui,sans-serif;min-height:100vh;transition:all 0.
 .container{max-width:800px;margin:0 auto;padding:1.5rem}
 .style-selector{position:fixed;top:1rem;right:1rem;z-index:1000;background:#fff;padding:0.5rem;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
 .style-selector select{padding:0.5rem;border:2px solid #000;border-radius:5px;font-weight:700;font-size:0.9rem;cursor:pointer}
-.clock{position:fixed;top:10px;left:10px;z-index:9999;background:#000;color:#0f0;font-family:'Courier New',monospace;padding:8px 12px;border:2px solid #0f0;border-radius:5px;font-size:14px;font-weight:700;letter-spacing:2px;box-shadow:0 0 10px #0f0}
-.calendar-btn{position:fixed;top:10px;left:140px;z-index:9999;background:#ff6b6b;color:#fff;padding:8px 12px;border:2px solid #000;border-radius:5px;font-weight:700;cursor:pointer;font-size:14px}
-.calendar-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:10000;display:none}
+.clock{position:fixed;top:1rem;left:1rem;z-index:1000;background:#000;color:#0f0;font-family:'Courier New',monospace;padding:0.5rem 1rem;border:2px solid #0f0;border-radius:5px;font-size:1.2rem;font-weight:700;letter-spacing:2px;box-shadow:0 0 10px #0f0}
+.calendar-btn{position:fixed;top:1rem;left:12rem;z-index:1000;background:#ff6b6b;color:#fff;padding:0.5rem 1rem;border:2px solid #000;border-radius:5px;font-weight:700;cursor:pointer;font-size:1rem}
+.calendar-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:2000;display:none;justify-content:center;align-items:center}
 .calendar-modal.aktywna{display:flex}
 .calendar{background:#fff;border:2px solid #000;padding:1.5rem;border-radius:10px;max-width:350px}
 .calendar-header{text-align:center;font-weight:900;font-size:1.3rem;margin-bottom:1rem}
@@ -114,9 +114,7 @@ text{font-size:6px;font-weight:700;text-anchor:middle;pointer-events:none}
 <body class="neo">
 <div class="clock" id="clock">00:00:00</div>
 <button class="calendar-btn" onclick="toggleCalendar()">Kalendarz</button>
-<div class="calendar-modal" id="calendarModal">
-<div class="calendar" style="position:relative">
-<button onclick="toggleCalendar()" style="position:absolute;top:-10px;right:-10px;background:red;color:white;border:2px solid black;border-radius:50%;width:30px;height:30px;cursor:pointer;font-weight:bold">X</button>
+<div class="calendar-modal" id="calendarModal" onclick="if(event.target===this)toggleCalendar()">
 <div class="calendar">
 <div class="calendar-header">KALENDARZ 2026</div>
 <div class="calendar-grid">
@@ -181,8 +179,6 @@ var lowiska={'zachodniopomorskie':[{n:'Jezioro Dąbie',t:'pzw',f:['Szczupak','Ok
  
  \ > ' + ( x . t = = = ' p a i d ' ? ' P L A T N E ' : ' P Z W ' ) + ' < / s p a n > < p > ' + x . l + ' < / p > ' ; d . o n c l i c k = f u n c t i o n ( ) { p o k a z L o w i s k o ( i ) ; } ; l . a p p e n d C h i l d ( d ) ; } ) ; i f ( a r r . l e n g t h = = = 0 ) { l . i n n e r H T M L = ' < d i v   c l a s s = \ p u s t e \ > < p > B R A K   L O W I S K < / p > < / d i v > ' ; } } f u n c t i o n   p o k a z L o w i s k o ( i ) { v a r   a r r = l o w i s k a [ a k t u a l n e ] ; i f ( f i l t r ! = = ' a l l ' ) { a r r = a r r . f i l t e r ( f u n c t i o n ( x ) { r e t u r n   x . t = = = f i l t r ; } ) ; } w y b r a n e = a r r [ i ] ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T y t u l ' ) . i n n e r T e x t = w y b r a n e . n ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T y p ' ) . i n n e r T e x t = w y b r a n e . t = = = ' p a i d ' ? ' P L A T N E ' : ' P Z W ' ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T y p ' ) . c l a s s N a m e = ' t y p   ' + w y b r a n e . t ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d a l O b r a z ' ) . s t y l e . b a c k g r o u n d I m a g e = ' u r l ( ' + f i s h I m a g e s [ M a t h . f l o o r ( M a t h . r a n d o m ( ) * f i s h I m a g e s . l e n g t h ) ] + ' ) ' ; v a r   r y b y = ' ' ; f o r ( v a r   j = 0 ; j < w y b r a n e . f . l e n g t h ; j + + ) { r y b y + = ' < s p a n   c l a s s = \ t a g \ > ' + w y b r a n e . f [ j ] + ' < / s p a n > ' ; } d o c u m e n t . g e t E l e m e n t B y I d ( ' m R y b y ' ) . i n n e r H T M L = r y b y ; i f ( w y b r a n e . t = = = ' p a i d ' ) { d o c u m e n t . g e t E l e m e n t B y I d ( ' m K o n t a k t S e k c ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m K o n t a k t ' ) . i n n e r T e x t = w y b r a n e . c ; } e l s e { d o c u m e n t . g e t E l e m e n t B y I d ( ' m K o n t a k t S e k c ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; } d o c u m e n t . g e t E l e m e n t B y I d ( ' m G o d z i n y ' ) . i n n e r T e x t = w y b r a n e . h ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m L o k a l ' ) . i n n e r T e x t = w y b r a n e . l ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T r a s a ' ) . h r e f = ' h t t p s : / / w w w . g o o g l e . c o m / m a p s / d i r / ? a p i = 1 & d e s t i n a t i o n = ' + w y b r a n e . l a + ' , ' + w y b r a n e . l o ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d a l ' ) . c l a s s L i s t . a d d ( ' a k t y w n a ' ) ; } f u n c t i o n   z a m k n i j M o d a l ( ) { d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d a l ' ) . c l a s s L i s t . r e m o v e ( ' a k t y w n a ' ) ; } < / s c r i p t > < / b o d y > < / h t m l > 
  
- < / s c r i p t > 
- 
- < / b o d y > < / h t m l > 
- 
+ < / s c r i p t >  
+ < / b o d y > < / h t m l >  
  
