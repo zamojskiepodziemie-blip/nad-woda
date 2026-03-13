@@ -13,9 +13,25 @@ header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing
 .container{max-width:800px;margin:0 auto;padding:1.5rem}
 .map-box{background:#fff;border:var(--border);padding:1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
 .map-title{text-align:center;font-weight:900;font-size:1.2rem;margin-bottom:1rem;text-transform:uppercase}
-.woj-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.woj-item{background:var(--bg);border:var(--border);padding:15px;text-align:center;font-weight:900;cursor:pointer;box-shadow:var(--shadow);transition:all 0.1s}
-.woj-item:hover{box-shadow:var(--shadow-hover);transform:translate(2px,2px)}
+.woj-list{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:3px;max-width:600px;margin:0 auto}
+.woj-item{background:var(--bg);border:2px solid #000;padding:8px 4px;text-align:center;font-weight:700;cursor:pointer;font-size:0.7rem;box-shadow:3px 3px 0 #000;transition:all 0.1s}
+.woj-item:nth-child(1){grid-column:1;grid-row:1}
+.woj-item:nth-child(2){grid-column:2;grid-row:1}
+.woj-item:nth-child(3){grid-column:3;grid-row:1}
+.woj-item:nth-child(4){grid-column:4;grid-row:1}
+.woj-item:nth-child(5){grid-column:1;grid-row:2}
+.woj-item:nth-child(6){grid-column:2;grid-row:2}
+.woj-item:nth-child(7){grid-column:3;grid-row:2}
+.woj-item:nth-child(8){grid-column:4;grid-row:2}
+.woj-item:nth-child(9){grid-column:1;grid-row:3}
+.woj-item:nth-child(10){grid-column:2;grid-row:3}
+.woj-item:nth-child(11){grid-column:3;grid-row:3}
+.woj-item:nth-child(12){grid-column:4;grid-row:3}
+.woj-item:nth-child(13){grid-column:1;grid-row:4}
+.woj-item:nth-child(14){grid-column:2;grid-row:4}
+.woj-item:nth-child(15){grid-column:3;grid-row:4}
+.woj-item:nth-child(16){grid-column:4;grid-row:4}
+.woj-item:hover{box-shadow:1px 1px 0 #000;transform:translate(2px,2px)}
 svg{width:100%;height:auto}
 path{cursor:pointer;fill:#fff;stroke:#000;stroke-width:2;transition:all 0.1s}
 path:hover{fill:var(--accent);transform:translate(-2px,-2px)}
@@ -65,16 +81,16 @@ text{font-size:6px;fill:#000;font-weight:900;text-anchor:middle;pointer-events:n
 <div class="woj-list">
 <div class="woj-item" onclick="wybierzWoj('zachodniopomorskie')">ZACHODNIOPOMORSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('pomorskie')">POMORSKIE</div>
-<div class="woj-item" onclick="wybierzWoj('wielkopolskie')">WIELKOPOLSKIE</div>
-<div class="woj-item" onclick="wybierzWoj('lubuskie')">LUBUSKIE</div>
-<div class="woj-item" onclick="wybierzWoj('kujawsko-pomorskie')">KUJAWSKO-POMORSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('warminsko-mazurskie')">WARMIŃSKO-MAZURSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('podlaskie')">PODLASKIE</div>
+<div class="woj-item" onclick="wybierzWoj('lubuskie')">LUBUSKIE</div>
+<div class="woj-item" onclick="wybierzWoj('wielkopolskie')">WIELKOPOLSKIE</div>
+<div class="woj-item" onclick="wybierzWoj('kujawsko-pomorskie')">KUJAWSKO-POMORSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('mazowieckie')">MAZOWIECKIE</div>
-<div class="woj-item" onclick="wybierzWoj('lodzkie')">ŁÓDZKIE</div>
-<div class="woj-item" onclick="wybierzWoj('lubelskie')">LUBELSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('dolnoslaskie')">DOLNOŚLĄSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('opolskie')">OPOLSKIE</div>
+<div class="woj-item" onclick="wybierzWoj('lodzkie')">ŁÓDZKIE</div>
+<div class="woj-item" onclick="wybierzWoj('lubelskie')">LUBELSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('slaskie')">ŚLĄSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('swietokrzyskie')">ŚWIĘTOKRZYSKIE</div>
 <div class="woj-item" onclick="wybierzWoj('malopolskie')">MAŁOPOLSKIE</div>
