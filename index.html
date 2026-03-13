@@ -100,6 +100,7 @@ function pokazLowisko(i){var arr=lowiska[aktualne];if(filtr!=='all'){arr=arr.fil
 wybrane=arr[i];document.getElementById('mTytul').innerText=wybrane.n;document.getElementById('mTyp').innerText=wybrane.t==='paid'?'PLATNE':'PZW';document.getElementById('mTyp').className='typ '+wybrane.t;document.getElementById('modalObraz').style.backgroundImage='url('+fishImages[Math.floor(Math.random()*fishImages.length)]+')';var ryby='';for(var j=0;j<wybrane.f.length;j++){ryby+='<span class="tag">'+wybrane.f[j]+'</span>';}
 document.getElementById('mRyby').innerHTML=ryby;if(wybrane.t==='paid'){document.getElementById('mKontaktSekc').classList.remove('hidden');document.getElementById('mKontakt').innerText=wybrane.c;}else{document.getElementById('mKontaktSekc').classList.add('hidden');}
 document.getElementById('mGodziny').innerText=wybrane.h;document.getElementById('mLokal').innerText=wybrane.l;document.getElementById('mTrasa').href='https://www.google.com/maps/dir/?api=1&destination='+wybrane.la+','+wybrane.lo;document.getElementById('modal').classList.add('aktywna');}
-function zamknijModal(){document.getElementById('modal').classList.remove('aktywna');}< / s c r i p t >  
- < / b o d y > < / h t m l >  
+function zamknijModal(){document.getElementById('modal').classList.remove('aktywna');}
+document.querySelectorAll('svg path').forEach(function(path){path.addEventListener('click',function(){var w=this.getAttribute('onclick').match(/'([^']+)'/);if(w)wybierzWoj(w[1]);});});
+</script>< / b o d y > < / h t m l >  
  
