@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nad wodą - Moja pasja</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(135deg,#1a5f7a,#159895);min-height:100vh;font-family:Arial,sans-serif;color:#333}
+header{background:rgba(0,0,0,0.3);color:#fff;padding:1rem;text-align:center;position:sticky;top:0}
+.container{padding:1rem;max-width:600px;margin:0 auto}
+.map-box{background:#fff;border-radius:20px;padding:1rem;margin-bottom:1rem}
+svg{width:100%;height:auto}
+path{cursor:pointer;fill:#57c5b6;stroke:#fff;stroke-width:1.5}
+path:hover{fill:#159895}
+text{font-size:5px;fill:#333;font-weight:600;text-anchor:middle;pointer-events:none}
+.filters{display:flex;gap:10px;margin-bottom:1rem;background:#fff;padding:.5rem;border-radius:15px}
+.btn{flex:1;padding:12px;border:none;border-radius:10px;background:#f0f0f0;cursor:pointer;font-weight:600}
+.btn.active{background:#1a5f7a;color:#fff}
+.lista{display:flex;flex-direction:column;gap:10px}
+.item{background:#fff;border-radius:15px;padding:1rem;cursor:pointer}
+.item h3{color:#1a5f7a;margin-bottom:.5rem}
+.typ{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
+.typ.paid{background:#ffeaa7;color:#d68910}
+.typ.pzw{background:#d5f5e3;color:#1e8449}
+.item p{font-size:.9rem;color:#666}
+.hidden{display:none}
+.back-btn{padding:10px 20px;background:#fff;border:none;border-radius:10px;cursor:pointer;margin-bottom:1rem;font-weight:600}
+.tytul{text-align:center;color:#fff;margin-bottom:1rem;font-size:1.3rem}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;display:none;overflow-y:auto}
+.modal.aktywna{display:block}
+.okno{background:#fff;margin:1rem;border-radius:20px;max-width:600px;position:relative}
+.zamknij{position:absolute;top:1rem;right:1rem;background:#fff;border:none;width:35px;height:35px;border-radius:50%;font-size:1.2rem;cursor:pointer}
+.obraz{height:150px;background:linear-gradient(135deg,#1a5f7a,#159895);display:flex;align-items:center;justify-content:center;color:#fff;font-size:3rem}
+.cialo{padding:1.5rem}
+.cialo h2{color:#1a5f7a;margin-bottom:1rem}
+.sekcja{margin-bottom:1rem;padding:1rem;background:#f9f9f9;border-radius:10px}
+.sekcja h4{color:#159895;margin-bottom:.5rem}
+.tagi{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:#57c5b6;color:#fff;padding:4px 10px;border-radius:15px;font-size:.8rem}
+.trasa{display:block;padding:15px;background:#1a5f7a;color:#fff;border:none;border-radius:10px;text-align:center;text-decoration:none;margin-top:1rem}
+.puste{text-align:center;padding:2rem;color:#fff}
+</style>
+</head>
+<body>
+<header><h1>🎣 Nad wodą - Moja pasja</h1></header>
+<div class="container">
+<div id="mapaWidok" class="map-box">
+<h2 style="text-align:center;color:#1a5f7a;margin-bottom:.5rem">Wybierz województwo</h2>
+<svg viewBox="0 0 440 380">
+<path d="M20,120 L70,100 L110,130 L100,180 L80,210 L30,200 L10,160 Z" onclick="wybierzWoj('zachodniopomorskie')"/><text x="55" y="160">ZACHODNIO</text><text x="55" y="168">POMORSKIE</text>
+<path d="M80,130 L150,110 L180,170 L170,220 L130,250 L80,230 L70,180 Z" onclick="wybierzWoj('wielkopolskie')"/><text x="125" y="180">WIELKOPOLSKIE</text>
+<path d="M20,200 L80,190 L100,230 L70,280 L20,270 Z" onclick="wybierzWoj('lubuskie')"/><text x="60" y="240">LUBUSKIE</text>
+<path d="M110,50 L170,40 L190,90 L170,130 L110,120 L100,80 Z" onclick="wybierzWoj('pomorskie')"/><text x="145" y="90">POMORSKIE</text>
+<path d="M150,100 L210,90 L230,140 L210,190 L170,200 L140,160 L150,120 Z" onclick="wybierzWoj('kujawsko-pomorskie')"/><text x="185" y="145">KUJAWSKIE</text>
+<path d="M190,40 L270,30 L280,80 L250,110 L200,100 L180,70 Z" onclick="wybierzWoj('warminsko-mazurskie')"/><text x="230" y="70">WARMIŃSKO</text><text x="230" y="78">MAZURSKIE</text>
+<path d="M270,30 L350,20 L370,80 L340,120 L280,100 L270,60 Z" onclick="wybierzWoj('podlaskie')"/><text x="315" y="75">PODLASKIE</text>
+<path d="M210,100 L280,90 L320,150 L300,210 L250,230 L200,200 L190,140 Z" onclick="wybierzWoj('mazowieckie')"/><text x="250" y="165">MAZOWIECKIE</text>
+<path d="M170,200 L250,190 L270,250 L250,310 L190,300 L160,250 Z" onclick="wybierzWoj('lodzkie')"/><text x="215" y="255">ŁÓDZKIE</text>
+<path d="M250,210 L320,200 L350,280 L320,340 L270,330 L250,270 Z" onclick="wybierzWoj('lubelskie')"/><text x="295" y="275">LUBELSKIE</text>
+<path d="M70,270 L130,260 L150,320 L120,370 L60,360 L50,310 Z" onclick="wybierzWoj('dolnoslaskie')"/><text x="100" y="320">DOLNOŚLĄSKIE</text>
+<path d="M130,260 L180,250 L190,310 L160,350 L130,330 L120,290 Z" onclick="wybierzWoj('opolskie')"/><text x="155" y="305">OPOLSKIE</text>
+<path d="M160,310 L210,300 L230,360 L200,390 L160,370 Z" onclick="wybierzWoj('slaskie')"/><text x="195" y="345">ŚLĄSKIE</text>
+<path d="M210,250 L270,240 L280,300 L250,330 L210,310 Z" onclick="wybierzWoj('swietokrzyskie')"/><text x="245" y="290">ŚWIĘTOKRZYSKIE</text>
+<path d="M200,320 L270,310 L290,370 L250,400 L200,380 Z" onclick="wybierzWoj('malopolskie')"/><text x="245" y="355">MAŁOPOLSKIE</text>
+<path d="M270,310 L340,300 L360,380 L320,410 L280,380 L260,340 Z" onclick="wybierzWoj('podkarpackie')"/><text x="310" y="355">PODKARPACKIE</text>
+</svg>
+</div>
+<div id="puste" class="puste"><h2>🎣 Witaj w "Nad wodą - Moja pasja"</h2><p>Kliknij na mapie w województwo, aby zobaczyć łowiska</p></div>
+<button id="wstecz" class="back-btn hidden" onclick="wroc()">← Wróć do mapy</button>
+<div id="tytulWoj" class="tytul hidden"></div>
+<div id="filtry" class="filters hidden"><button class="btn active" id="btnW" onclick="ustawFiltr('all')">Wszystkie</button><button class="btn" id="btnP" onclick="ustawFiltr('paid')">Płatne</button><button class="btn" id="btnZ" onclick="ustawFiltr('pzw')">PZW</button></div>
+<div id="lista" class="lista"></div>
+</div>
+<div id="modal" class="modal"><div class="okno"><button class="zamknij" onclick="zamknijModal()">×</button><div class="obraz">🎣</div><div class="cialo"><h2 id="mTytul"></h2><span class="typ" id="mTyp"></span><div class="sekcja"><h4>🐟 Ryby</h4><div class="tagi" id="mRyby"></div></div><div class="sekcja hidden" id="mKontaktSekc"><h4>📞 Kontakt</h4><p id="mKontakt"></p></div><div class="sekcja"><h4>🕐 Godziny otwarcia</h4><p id="mGodziny"></p></div><div class="sekcja"><h4>📍 Lokalizacja</h4><p id="mLokal"></p></div><a class="trasa" id="mTrasa" href="#" target="_blank">Pokaż trasę w Google Maps</a></div></div></div>
+<script>
+var lowiska={'zachodniopomorskie':[{n:'Jezioro Dąbie',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Dąbie',la:53.38,lo:14.53},{n:'Jezioro Miedwie',t:'pzw',f:['Szczupak','Karp','Leszcz','Węgorz'],h:'cały rok',l:'Miedwie',la:53.32,lo:14.83},{n:'Jezioro Drawsko',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Drawsko',la:53.57,lo:15.82},{n:'Gosp. Szczecin',t:'paid',f:['Karp','Amur','Sum','Tołpyga'],c:'91 123 45 67',h:'6-21',l:'Szczecin',la:53.43,lo:14.55},{n:'Farma Trzebiatów',t:'paid',f:['Karp','Lin'],c:'94 234 56 78',h:'7-19',l:'Trzebiatów',la:54.07,lo:15.27}],'wielkopolskie':[{n:'Jezioro Maltańskie',t:'pzw',f:['Karp','Leszcz','Płotka','Lin'],h:'cały rok',l:'Poznań',la:52.4,lo:16.93},{n:'Jezioro Kierskie',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Kórnik',la:52.25,lo:17.08},{n:'Zbiornik Wągrowiec',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Wągrowiec',la:52.8,lo:17.2},{n:'Stawy Kobyla Góra',t:'paid',f:['Karp','Tołpyga','Lin'],c:'62 123 45 67',h:'7-18',l:'Kobyla Góra',la:51.07,lo:18.15},{n:'Gosp. Konin',t:'paid',f:['Karp','Sum','Amur'],c:'63 234 56 78',h:'6-20',l:'Konin',la:52.2,lo:18.27}],'lubuskie':[{n:'Jezioro Niesłysz',t:'pzw',f:['Szczupak','Karp','Węgorz','Lin'],h:'cały rok',l:'Niesłysz',la:52.23,lo:15.28},{n:'Jezioro Sława',t:'pzw',f:['Karp','Sum','Amur','Węgorz'],h:'cały rok',l:'Sława',la:51.88,lo:16.07},{n:'Gosp. Sława',t:'paid',f:['Karp','Sum','Amur'],c:'68 123 45 67',h:'6-20',l:'Sława',la:51.88,lo:16.07},{n:'Stawy Klenica',t:'paid',f:['Karp','Lin','Amur'],c:'68 234 56 78',h:'7-18',l:'Klenica',la:52.25,lo:15.18},{n:'Gosp. Zielona Góra',t:'paid',f:['Karp','Tołpyga','Sum'],c:'68 345 67 89',h:'6-20',l:'Zielona Góra',la:51.94,lo:15.51}],'pomorskie':[{n:'Jezioro Żarnowieckie',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Żarnowiec',la:54.73,lo:18.03},{n:'Jezioro Wdzydze',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Wdzidze',la:54.02,lo:17.95},{n:'Jezioro Raduńskie',t:'pzw',f:['Szczupak','Okon','Płotka'],h:'cały rok',l:'Kartuzy',la:54.33,lo:18.2},{n:'Gosp. Kartuzy',t:'paid',f:['Karp','Tołpyga','Lin'],c:'58 123 45 67',h:'6-21',l:'Kartuzy',la:54.33,lo:18.2},{n:'Stawy Przywidz',t:'paid',f:['Karp','Amur','Tołpyga'],c:'58 234 56 78',h:'7-19',l:'Przywidz',la:54.25,lo:18.4}],'kujawsko-pomorskie':[{n:'Jezioro Gopło',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Kruszwica',la:52.68,lo:18.32},{n:'Jezioro Szewnice',t:'pzw',f:['Szczupak','Okon','Płotka','Karp'],h:'cały rok',l:'Szewnice',la:53.38,lo:17.97},{n:'Jezioro Chełmżyńskie',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Chełmża',la:53.18,lo:18.43},{n:'Gosp. Bydgoszcz',t:'paid',f:['Karp','Lin','Amur'],c:'52 123 45 67',h:'6-21',l:'Bydgoszcz',la:53.12,lo:18.01},{n:'Stawy Toruń',t:'paid',f:['Karp','Tołpyga','Lin'],c:'56 234 56 78',h:'7-19',l:'Toruń',la:53.01,lo:18.6}],'warminsko-mazurskie':[{n:'Jezioro Mamry',t:'pzw',f:['Szczupak','Okon','Sielawa','Węgorz'],h:'cały rok',l:'Węgorzewo',la:54.22,lo:21.73},{n:'Jezioro Śniardwy',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Mikołajki',la:53.78,lo:21.73},{n:'Jezioro Niegocin',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Giżycko',la:54.03,lo:21.75},{n:'Jezioro Tałty',t:'pzw',f:['Pstrąg','Lipień','Karaś'],h:'cały rok',l:'Tałty',la:53.93,lo:21.75},{n:'Gosp. Giżycko',t:'paid',f:['Karp','Sum','Amur'],c:'87 123 45 67',h:'6-20',l:'Giżycko',la:54.03,lo:21.77},{n:'Stawy Ełk',t:'paid',f:['Karp','Lin','Amur'],c:'87 234 56 78',h:'7-19',l:'Ełk',la:53.83,lo:22.35}],'podlaskie':[{n:'Jezioro Hańcza',t:'pzw',f:['Sielawa','Sieja','Płotka','Szczupak'],h:'cały rok',l:'Hańcza',la:54.28,lo:22.82},{n:'Jezioro Wigry',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Wigry',la:54.08,lo:23.08},{n:'Jezioro Rajgród',t:'pzw',f:['Sielawa','Sieja','Płotka'],h:'cały rok',l:'Rajgród',la:53.73,lo:22.97},{n:'Gosp. Biebrza',t:'paid',f:['Karp','Amur','Lin'],c:'85 123 45 67',h:'7-18',l:'Biebrza',la:53.62,lo:22.68},{n:'Stawy Hajnówka',t:'paid',f:['Karp','Amur','Sum'],c:'85 234 56 78',h:'7-19',l:'Hajnówka',la:52.73,lo:23.58}],'mazowieckie':[{n:'Jezioro Zegrzyńskie',t:'pzw',f:['Szczupak','Okon','Leszcz','Węgorz'],h:'cały rok',l:'Zegrze',la:52.43,lo:20.88},{n:'Zbiornik Dębe',t:'pzw',f:['Szczupak','Karp','Płotka'],h:'cały rok',l:'Dębe',la:52.28,lo:21.15},{n:'Jezioro Łyso',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Mława',la:53.12,lo:20.37},{n:'Gosp. Włodawa',t:'paid',f:['Karp','Tołpyga','Lin'],c:'82 123 45 67',h:'7-19',l:'Włodawa',la:51.55,lo:23.55},{n:'Stawy Płock',t:'paid',f:['Karp','Amur','Tołpyga'],c:'24 234 56 78',h:'7-18',l:'Płock',la:52.55,lo:19.71}],'lodzkie':[{n:'Zbiornik Sulejowski',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Sulejów',la:51.35,lo:19.88},{n:'Stawy Rzgów',t:'paid',f:['Karp','Lin','Tołpyga'],c:'42 234 56 78',h:'7-18',l:'Rzgów',la:51.73,lo:19.45},{n:'Gosp. Łódź',t:'paid',f:['Karp','Amur','Sum'],c:'42 345 67 89',h:'6-20',l:'Łódź',la:51.76,lo:19.45},{n:'Jezioro Bugaj',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Radomsko',la:51.07,lo:19.45}],'lubelskie':[{n:'Zalew Zemborzycki',t:'pzw',f:['Karp','Leszcz','Szczupak','Węgorz'],h:'cały rok',l:'Lublin',la:51.25,lo:22.57},{n:'Stawy Uścimów',t:'paid',f:['Karp','Amur','Tołpyga','Lin'],c:'81 456 78 90',h:'7-19',l:'Uścimów',la:51.4,lo:22.95},{n:'Jezioro Piaseczno',t:'pzw',f:['Szczupak','Okon','Płotka'],h:'cały rok',l:'Piaseczno',la:51.03,lo:23.48},{n:'Gosp. Puławy',t:'paid',f:['Karp','Sum','Amur'],c:'81 567 89 01',h:'6-20',l:'Puławy',la:51.42,lo:21.97},{n:'Jezioro Łukie',t:'pzw',f:['Karp','Leszcz','Płotka','Węgorz'],h:'cały rok',l:'Łuków',la:51.93,lo:22.38}],'dolnoslaskie':[{n:'Stawy Milicz',t:'paid',f:['Karp','Leszcz','Płotka','Lin'],c:'71 123 45 67',h:'6-22',l:'Milicz',la:51.53,lo:17.27},{n:'Zbiornik Turawski',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Turawa',la:50.93,lo:18.1},{n:'Jezioro Bystrzyckie',t:'pzw',f:['Pstrąg','Karaś','Płotka'],h:'cały rok',l:'Bystrzyca',la:50.82,lo:16.65},{n:'Gosp. Wrocław',t:'paid',f:['Karp','Amur','Sum'],c:'71 234 56 78',h:'6-21',l:'Wrocław',la:51.1,lo:17.03},{n:'Stawy Dzierżoniów',t:'paid',f:['Karp','Tołpyga','Lin'],c:'74 345 67 89',h:'7-19',l:'Dzierżoniów',la:50.73,lo:16.62}],'opolskie':[{n:'Jezioro Nyskie',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Nysa',la:50.48,lo:17.33},{n:'Jezioro Otmuchowskie',t:'pzw',f:['Szczupak','Karp','Leszcz','Węgorz'],h:'cały rok',l:'Otmuchów',la:50.47,lo:17.18},{n:'Gosp. Opole',t:'paid',f:['Karp','Sum','Amur'],c:'77 123 45 67',h:'6-20',l:'Opole',la:50.64,lo:17.93},{n:'Stawy Kędzierzyn',t:'paid',f:['Karp','Tołpyga','Lin'],c:'77 234 56 78',h:'7-19',l:'Kędzierzyn-Koźle',la:50.34,lo:18.22}],'slaskie':[{n:'Zbiornik Łączany',t:'pzw',f:['Karp','Amur','Szczupak'],h:'cały rok',l:'Łączany',la:49.95,lo:18.85},{n:'Jezioro Żywieckie',t:'pzw',f:['Pstrąg','Karaś','Lipień'],h:'cały rok',l:'Żywiec',la:49.68,lo:19.18},{n:'Gosp. Katowice',t:'paid',f:['Karp','Sum','Tołpyga'],c:'32 123 45 67',h:'6-21',l:'Katowice',la:50.26,lo:19.02},{n:'Stawy Czechowice',t:'paid',f:['Karp','Lin','Tołpyga'],c:'32 234 56 78',h:'7-19',l:'Czechowice-Dziedzice',la:49.92,lo:19.02}],'swietokrzyskie':[{n:'Zbiornik Brody',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Brody',la:51.15,lo:20.65},{n:'Jezioro Świdnickie',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Świdnica',la:50.85,lo:16.48},{n:'Gosp. Kielce',t:'paid',f:['Karp','Amur','Sum'],c:'41 123 45 67',h:'6-20',l:'Kielce',la:50.87,lo:20.63},{n:'Stawy Ćmielów',t:'paid',f:['Karp','Amur'],c:'15 234 56 78',h:'8-18',l:'Ćmielów',la:50.88,lo:21.28}],'malopolskie':[{n:'Zbiornik Czchów',t:'pzw',f:['Pstrąg','Karaś','Płotka'],h:'cały rok',l:'Czchów',la:49.73,lo:20.7},{n:'Jezioro Rożnowskie',t:'pzw',f:['Pstrąg','Lipień','Karaś','Szczupak'],h:'cały rok',l:'Nowy Sącz',la:49.63,lo:20.7},{n:'Gosp. Kraków',t:'paid',f:['Karp','Sum','Amur'],c:'12 123 45 67',h:'6-21',l:'Kraków',la:50.06,lo:19.94},{n:'Stawy Okocim',t:'paid',f:['Karp','Amur','Sum'],c:'14 234 56 78',h:'6-22',l:'Okocim',la:49.95,lo:20.55}],'podkarpackie':[{n:'Jezioro Solińskie',t:'pzw',f:['Pstrąg','Lipień','Karaś','Szczupak'],h:'cały rok',l:'Solina',la:49.42,lo:22.48},{n:'Zbiornik Myczkowce',t:'pzw',f:['Pstrąg','Karaś','Lipień'],h:'cały rok',l:'Myczkowce',la:49.38,lo:22.38},{n:'Jezioro Lanc Korocka',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Lanc',la:49.45,lo:22.65},{n:'Gosp. Rzeszów',t:'paid',f:['Karp','Amur','Sum'],c:'17 123 45 67',h:'6-20',l:'Rzeszów',la:50.04,lo:22},{n:'Stawy Zaleszany',t:'paid',f:['Karp','Amur','Tołpyga'],c:'17 234 56 78',h:'6-20',l:'Zaleszany',la:50.25,lo:21.65}]};
+var aktualne=null;
+var filtr='all';
+var wybrane=null;
+function wybierzWoj(w){aktualne=w;document.getElementById('mapaWidok').classList.add('hidden');document.getElementById('puste').classList.add('hidden');document.getElementById('wstecz').classList.remove('hidden');document.getElementById('tytulWoj').classList.remove('hidden');document.getElementById('tytulWoj').innerText='Łowiska - '+w;document.getElementById('filtry').classList.remove('hidden');render();}
+function wroc(){aktualne=null;document.getElementById('mapaWidok').classList.remove('hidden');document.getElementById('puste').classList.remove('hidden');document.getElementById('wstecz').classList.add('hidden');document.getElementById('tytulWoj').classList.add('hidden');document.getElementById('filtry').classList.add('hidden');document.getElementById('lista').innerHTML='';filtr='all';document.getElementById('btnW').className='btn active';document.getElementById('btnP').className='btn';document.getElementById('btnZ').className='btn';}
+function ustawFiltr(f){filtr=f;document.getElementById('btnW').className='btn'+(f==='all'?' active':'');document.getElementById('btnP').className='btn'+(f==='paid'?' active':'');document.getElementById('btnZ').className='btn'+(f==='pzw'?' active':'');render();}
+function render(){var l=document.getElementById('lista');l.innerHTML='';if(!aktualne||!lowiska[aktualne])return;var arr=lowiska[aktualne];if(filtr!=='all'){arr=arr.filter(function(x){return x.t===filtr;});}
+arr.forEach(function(x,i){var d=document.createElement('div');d.className='item';d.innerHTML='<h3>'+x.n+'</h3><span class="typ '+x.t+'">'+(x.t==='paid'?'Płatne':'PZW')+'</span><p>📍 '+x.l+'</p>';d.onclick=function(){pokazLowisko(i);};l.appendChild(d);});if(arr.length===0){l.innerHTML='<div class="puste"><p>Brak łowisk w tym regionie</p></div>';}}
+function pokazLowisko(i){var arr=lowiska[aktualne];if(filtr!=='all'){arr=arr.filter(function(x){return x.t===filtr;});}
+wybrane=arr[i];document.getElementById('mTytul').innerText=wybrane.n;document.getElementById('mTyp').innerText=wybrane.t==='paid'?'Płatne':'PZW';document.getElementById('mTyp').className='typ '+wybrane.t;var ryby='';for(var j=0;j<wybrane.f.length;j++){ryby+='<span class="tag">'+wybrane.f[j]+'</span>';}
+document.getElementById('mRyby').innerHTML=ryby;if(wybrane.t==='paid'){document.getElementById('mKontaktSekc').classList.remove('hidden');document.getElementById('mKontakt').innerText=wybrane.c;}else{document.getElementById('mKontaktSekc').classList.add('hidden');}
+document.getElementById('mGodziny').innerText=wybrane.h;document.getElementById('mLokal').innerText=wybrane.l;document.getElementById('mTrasa').href='https://www.google.com/maps/dir/?api=1&destination='+wybrane.la+','+wybrane.lo;document.getElementById('modal').classList.add('aktywna');}
+function zamknijModal(){document.getElementById('modal').classList.remove('aktywna');}
+</script>
+</body>
+</html>
