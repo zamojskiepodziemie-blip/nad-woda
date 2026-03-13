@@ -6,134 +6,56 @@
 <title>Nad wodą - Moja pasja</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;min-height:100vh;transition:all 0.3s}
+:root{--bg:#fafaf5;--border:2px solid #000;--shadow:4px 4px 0 #000;--shadow-hover:2px 2px 0 #000;--accent:#FFE500;--text:#000}
+body{background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--text);min-height:100vh}
+header{background:var(--accent);border-bottom:var(--border);padding:1.5rem;text-align:center;box-shadow:var(--shadow)}
+header h1{font-weight:900;font-size:2rem;text-transform:uppercase;letter-spacing:2px}
 .container{max-width:800px;margin:0 auto;padding:1.5rem}
-.style-selector{position:fixed;top:1rem;right:1rem;z-index:1000;background:#fff;padding:0.5rem;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
-.style-selector select{padding:0.5rem;border:2px solid #000;border-radius:5px;font-weight:700;font-size:0.9rem;cursor:pointer}
-.clock{position:fixed;top:1rem;left:1rem;z-index:1000;background:#000;color:#0f0;font-family:'Courier New',monospace;padding:0.5rem 1rem;border:2px solid #0f0;border-radius:5px;font-size:1.2rem;font-weight:700;letter-spacing:2px;box-shadow:0 0 10px #0f0}
-.calendar-btn{position:fixed;top:1rem;left:12rem;z-index:1000;background:#ff6b6b;color:#fff;padding:0.5rem 1rem;border:2px solid #000;border-radius:5px;font-weight:700;cursor:pointer;font-size:1rem}
-.calendar-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:2000;display:none;justify-content:center;align-items:center}
-.calendar-modal.aktywna{display:flex}
-.calendar{background:#fff;border:2px solid #000;padding:1.5rem;border-radius:10px;max-width:350px}
-.calendar-header{text-align:center;font-weight:900;font-size:1.3rem;margin-bottom:1rem}
-.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}
-.calendar-day{font-weight:700;font-size:0.8rem;padding:5px}
-.calendar-date{padding:8px;border:1px solid #ddd;cursor:pointer;font-size:0.9rem}
-.calendar-date:hover{background:#0f0}
-.calendar-date.today{background:#ff6b6b;color:#fff;border-color:#ff6b6b}
-header{padding:1.5rem;text-align:center;font-weight:900;font-size:1.8rem;text-transform:uppercase;letter-spacing:2px}
-.map-box{padding:1.5rem;margin-bottom:1.5rem}
-.map-title{text-align:center;font-weight:700;font-size:1.2rem;margin-bottom:1rem}
+.map-box{background:#fff;border:var(--border);padding:1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+.map-title{text-align:center;font-weight:900;font-size:1.2rem;margin-bottom:1rem;text-transform:uppercase}
 svg{width:100%;height:auto}
-path{cursor:pointer;transition:all 0.2s}
-path:hover{transform:scale(1.02)}
-text{font-size:6px;font-weight:700;text-anchor:middle;pointer-events:none}
+path{cursor:pointer;fill:#fff;stroke:#000;stroke-width:2;transition:all 0.1s}
+path:hover{fill:var(--accent);transform:translate(-2px,-2px)}
+text{font-size:6px;fill:#000;font-weight:900;text-anchor:middle;pointer-events:none}
 .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
-.btn{padding:1rem;font-weight:700;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.btn{padding:1rem;border:var(--border);background:#fff;font-weight:900;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow);transition:all 0.1s;font-size:0.9rem}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
+.btn.active{background:var(--accent);transform:translate(2px,2px);box-shadow:var(--shadow-hover)}
 .lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
-.item{padding:1.2rem;cursor:pointer;transition:all 0.2s}
-.item:hover{transform:translateY(-4px)}
-.item h3{font-weight:800;margin-bottom:0.5rem}
-.typ{display:inline-block;padding:4px 12px;font-weight:700;font-size:0.8rem;border-radius:20px;margin-bottom:0.5rem}
-.typ.paid{background:#f39c12;color:#fff}
-.typ.pzw{background:#27ae60;color:#fff}
-.item p{opacity:0.8}
+.item{background:#fff;border:var(--border);padding:1.2rem;cursor:pointer;box-shadow:var(--shadow);transition:all 0.1s}
+.item:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
+.item h3{font-weight:900;font-size:1.1rem;margin-bottom:0.5rem;text-transform:uppercase}
+.typ{display:inline-block;padding:4px 12px;border:var(--border);font-weight:900;font-size:0.75rem;text-transform:uppercase;margin-bottom:0.5rem}
+.typ.paid{background:var(--accent)}
+.typ.pzw{background:#fff}
+.item p{font-weight:700;font-size:0.9rem}
 .hidden{display:none}
-.back-btn{padding:1rem 2rem;cursor:pointer;font-weight:700;display:inline-block;margin-bottom:1rem}
-.tytul{font-weight:800;font-size:1.5rem;margin-bottom:1rem;text-align:center}
+.back-btn{padding:1rem 2rem;background:var(--accent);border:var(--border);cursor:pointer;font-weight:900;text-transform:uppercase;margin-bottom:1rem;box-shadow:var(--shadow);display:inline-block}
+.back-btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
+.tytul{font-weight:900;font-size:1.5rem;text-transform:uppercase;margin-bottom:1rem;text-align:center}
 .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;display:none;overflow-y:auto}
 .modal.aktywna{display:block}
-.okno{background:#fff;margin:1rem;border-radius:20px;max-width:600px}
-.zamknij{position:absolute;top:1rem;right:1rem;background:#fff;width:40px;height:40px;border-radius:50%;font-size:1.5rem;font-weight:700;cursor:pointer;border:2px solid #000}
-.obraz{height:200px;background-size:cover;background-position:center}
+.okno{background:var(--bg);margin:1rem;border:var(--border);max-width:600px;box-shadow:var(--shadow)}
+.zamknij{position:absolute;top:1rem;right:1rem;background:var(--accent);border:var(--border);width:40px;height:40px;font-size:1.5rem;font-weight:900;cursor:pointer;box-shadow:var(--shadow)}
+.zamknij:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
+.obraz{height:200px;background-size:cover;background-position:center;position:relative;border-bottom:var(--border)}
+.obraz::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,var(--bg))}
 .cialo{padding:1.5rem}
-.cialo h2{font-weight:800;margin-bottom:1rem}
-.sekcja{padding:1rem;margin-bottom:1rem;border-radius:10px}
-.sekcja h4{font-weight:700;margin-bottom:0.5rem}
+.cialo h2{font-weight:900;font-size:1.4rem;margin-bottom:1rem;text-transform:uppercase}
+.sekcja{border:var(--border);padding:1rem;margin-bottom:1rem;background:#fff;box-shadow:var(--shadow)}
+.sekcja h4{font-weight:900;text-transform:uppercase;margin-bottom:0.5rem}
 .tagi{display:flex;flex-wrap:wrap;gap:8px}
-.tag{padding:6px 12px;font-weight:600;font-size:0.85rem;border-radius:15px}
-.trasa{display:block;padding:1rem;text-align:center;text-decoration:none;font-weight:700;border-radius:10px;margin-top:1rem}
-.puste{text-align:center;padding:3rem}
-.puste h2{font-weight:800;font-size:1.5rem;margin-bottom:1rem}
-
-/* NEOBRUTALISM */
-.neo{background:#fafaf5;color:#000}
-.neo header{background:#FFE500;border-bottom:2px solid #000;box-shadow:4px 4px 0 #000}
-.neo .map-box{background:#fff;border:2px solid #000;box-shadow:4px 4px 0 #000}
-.neo path{fill:#fff;stroke:#000;stroke-width:2}
-.neo .btn,.neo .item,.neo .sekcja,.neo .trasa,.neo .back-btn{border:2px solid #000;box-shadow:4px 4px 0 #000}
-.neo .btn.active{background:#FFE500;transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
-
-/* GLASS */
-.glass{background:linear-gradient(135deg,#667eea,#764ba2)}
-.glass header{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);color:#fff}
-.glass .map-box{background:rgba(255,255,255,0.15);backdrop-filter:blur(20px);border-radius:20px;color:#fff}
-.glass .item{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:15px;color:#fff}
-.glass .btn{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:25px;color:#fff}
-.glass .btn.active{background:#fff;color:#667eea}
-.glass path{fill:rgba(255,255,255,0.3);stroke:#fff}
-
-/* CYBERPUNK */
-.cyber{background:#0a0a0a;color:#0ff}
-.cyber header{background:linear-gradient(90deg,#ff00ff,#00ffff);color:#fff;text-shadow:0 0 10px #fff}
-.cyber .map-box{background:#111;border:2px solid #ff00ff;box-shadow:0 0 20px #ff00ff50}
-.cyber path{fill:#111;stroke:#00ffff;filter:drop-shadow(0 0 5px #00ffff)}
-.cyber .item{background:#111;border:2px solid #00ffff;box-shadow:0 0 15px #00ffff30}
-.cyber .btn{background:#111;border:2px solid #ff00ff;color:#ff00ff;text-transform:uppercase;letter-spacing:2px}
-.cyber .btn.active{background:#ff00ff;color:#000;box-shadow:0 0 20px #ff00ff}
-.cyber .tag{background:linear-gradient(90deg,#ff00ff,#00ffff);color:#000}
-
-/* RETRO */
-.retro{background:linear-gradient(180deg,#ffb6c1,#87ceeb)}
-.retro header{background:linear-gradient(90deg,#ff69b4,#00ced1);text-shadow:2px 2px #fff}
-.retro .map-box{background:rgba(255,255,255,0.6);border:3px solid #ff69b4}
-.retro path{fill:#ffb6c1;stroke:#ff69b4}
-.retro .item{background:linear-gradient(135deg,#fff8dc,#ffc0cb);border:2px dashed #ff69b4}
-.retro .btn{background:#00ced1;color:#fff;border-radius:20px}
-.retro .btn.active{background:#ff69b4}
-
-/* MINIMAL */
-.minimal{background:#fff;color:#000}
-.minimal header{background:#fff;border-bottom:1px solid #eee}
-.minimal .map-box{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.05)}
-.minimal path{fill:#f0f0f0;stroke:#ccc}
-.minimal .item{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
-.minimal .btn{background:#f5f5f5;border:none;border-radius:25px}
-.minimal .btn.active{background:#000;color:#fff}
-
-/* DARK PREMIUM */
-.dark{background:linear-gradient(135deg,#1a1a1a,#2d2d2a)}
-.dark header{background:linear-gradient(90deg,#1a1a1a,#2d2d2a);border-bottom:2px solid #d4af37;color:#d4af37}
-.dark .map-box{background:#1a1a1a;border:2px solid #d4af37}
-.dark path{fill:#2d2d2a;stroke:#d4af37}
-.dark .item{background:#1a1a1a;border:1px solid #d4af37;color:#fff}
-.dark .btn{background:transparent;border:1px solid #d4af37;color:#d4af37}
-.dark .btn.active{background:#d4af37;color:#000}
+.tag{background:var(--accent);border:var(--border);padding:6px 12px;font-weight:900;font-size:0.8rem;text-transform:uppercase}
+.trasa{display:block;padding:1rem;background:var(--accent);border:var(--border);text-align:center;text-decoration:none;color:#000;font-weight:900;text-transform:uppercase;margin-top:1rem;box-shadow:var(--shadow)}
+.trasa:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
+.puste{text-align:center;padding:3rem;border:var(--border);background:#fff;box-shadow:var(--shadow)}
+.puste h2{font-weight:900;font-size:1.5rem;text-transform:uppercase;margin-bottom:1rem}
+.puste p{font-weight:700;font-size:1.1rem}
+@media(max-width:600px){.container{padding:1rem}.lista{grid-template-columns:1fr}}
 </style>
 </head>
-<body class="neo">
-<div class="clock" id="clock">00:00:00</div>
-<button class="calendar-btn" onclick="toggleCalendar()">Kalendarz</button>
-<div class="calendar-modal" id="calendarModal" onclick="if(event.target===this)toggleCalendar()">
-<div class="calendar">
-<div class="calendar-header">KALENDARZ 2026</div>
-<div class="calendar-grid">
-<div class="calendar-day">PN</div><div class="calendar-day">WT</div><div class="calendar-day">SR</div><div class="calendar-day">CZ</div><div class="calendar-day">PT</div><div class="calendar-day">SO</div><div class="calendar-day">ND</div>
-</div>
-<div class="calendar-grid" id="calendarDates"></div>
-</div>
-</div>
-<div class="style-selector">
-<select onchange="changeStyle(this.value)">
-<option value="neo">Neobrutalism</option>
-<option value="glass">Glassmorphism</option>
-<option value="cyber">Cyberpunk</option>
-<option value="retro">Retro/Vaporwave</option>
-<option value="minimal">Minimal</option>
-<option value="dark">Dark Premium</option>
-</select>
-</div>
-<header>🎣 NAD WODĄ - MOJA PASJA</header>
+<body>
+<header><h1>🎣 NAD WODĄ - MOJA PASJA</h1></header>
 <div class="container">
 <div id="mapaWidok" class="map-box">
 <h2 class="map-title">WYBIERZ WOJEWÓDZTWO</h2>
@@ -156,29 +78,28 @@ text{font-size:6px;font-weight:700;text-anchor:middle;pointer-events:none}
 <path d="M270,310 L340,300 L360,380 L320,410 L280,380 L260,340 Z" onclick="wybierzWoj('podkarpackie')"/><text x="310" y="355">PODKARPACKIE</text>
 </svg>
 </div>
-<div id="puste" class="puste"><h2>🎣 WITAJ W "NAD WODĄ"</h2><p>Kliknij na mapie w województwo</p></div>
+<div id="puste" class="puste"><h2>🎣 WITAJ W "NAD WODĄ"</h2><p>Kliknij na mapie w województwo, aby zobaczyć łowiska</p></div>
 <button id="wstecz" class="back-btn hidden" onclick="wroc()">← WROC DO MAPY</button>
 <div id="tytulWoj" class="tytul hidden"></div>
-<div id="filtry" class="filters hidden"><button class="btn active" id="btnW" onclick="ustawFiltr('all')">WSZYSTKIE</button><button class="btn" id="btnP" onclick="ustawFiltr('paid')">PLATNE</button><button class="btn" id="btnZ" onclick="ustawFiltr('pzw')">PZW</button></div>
+<div id="filtry" class="filters hidden"><button class="btn active" id="btnW" onclick="ustawFiltr('all')">WSZYSTKIE</button><button class="btn" id="btnP" onclick="ustawFiltr('paid')">PŁATNE</button><button class="btn" id="btnZ" onclick="ustawFiltr('pzw')">PZW</button></div>
 <div id="lista" class="lista"></div>
 </div>
 <div id="modal" class="modal"><div class="okno"><button class="zamknij" onclick="zamknijModal()">X</button><div class="obraz" id="modalObraz"></div><div class="cialo"><h2 id="mTytul"></h2><span class="typ" id="mTyp"></span><div class="sekcja"><h4>🐟 RYBY</h4><div class="tagi" id="mRyby"></div></div><div class="sekcja hidden" id="mKontaktSekc"><h4>📞 KONTAKT</h4><p id="mKontakt"></p></div><div class="sekcja"><h4>🕐 GODZINY</h4><p id="mGodziny"></p></div><div class="sekcja"><h4>📍 LOKALIZACJA</h4><p id="mLokal"></p></div><a class="trasa" id="mTrasa" href="#" target="_blank">🧭 TRASA W GOOGLE MAPS</a></div></div></div>
 <script>
-function updateClock(){document.getElementById('clock').innerText=new Date().toLocaleTimeString('pl-PL');}
-setInterval(updateClock,1000);updateClock();
-function toggleCalendar(){document.getElementById('calendarModal').classList.toggle('aktywna');renderCalendar();}
-function renderCalendar(){var c=document.getElementById('calendarDates');c.innerHTML='';var m=['Styczen','Luty','Marzec','Kwiecien','Maj','Czerwiec','Lipiec','Sierpien','Wrzesien','Pazdziernik','Listopad','Grudzien'];var d=[31,28,31,30,31,30,31,31,30,31,30,31];for(var i=0;i<12;i++){var mh=document.createElement('div');mh.style.gridColumn='span 7';mh.style.fontWeight='900';mh.style.marginTop='10px';mh.innerText=m[i];c.appendChild(mh);for(var j=1;j<=d[i];j++){var dd=document.createElement('div');dd.className='calendar-date';dd.innerText=j;dd.onclick=function(){alert('Wybrano: '+this.innerText+' '+m[i]);};c.appendChild(dd);}}}
-function changeStyle(style){document.body.className=style;localStorage.setItem('fishingStyle',style);}
-if(localStorage.getItem('fishingStyle')){document.body.className=localStorage.getItem('fishingStyle');document.querySelector('.style-selector select').value=localStorage.getItem('fishingStyle');}
 var fishImages=['https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=600','https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600','https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600','https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=600','https://images.unsplash.com/photo-1505506874110-6a7a69069a08?w=600','https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600'];
-var lowiska={'zachodniopomorskie':[{n:'Jezioro Dąbie',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Dąbie',la:53.38,lo:14.53},{n:'Jezioro Miedwie',t:'pzw',f:['Szczupak','Karp','Leszcz','Węgorz'],h:'cały rok',l:'Miedwie',la:53.32,lo:14.83},{n:'Jezioro Drawsko',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Drawsko',la:53.57,lo:15.82},{n:'Gosp. Szczecin',t:'paid',f:['Karp','Amur','Sum','Tołpyga'],c:'91 123 45 67',h:'6-21',l:'Szczecin',la:53.43,lo:14.55},{n:'Farma Trzebiatów',t:'paid',f:['Karp','Lin'],c:'94 234 56 78',h:'7-19',l:'Trzebiatów',la:54.07,lo:15.27}],'wielkopolskie':[{n:'Jezioro Maltańskie',t:'pzw',f:['Karp','Leszcz','Płotka','Lin'],h:'cały rok',l:'Poznań',la:52.4,lo:16.93},{n:'Jezioro Kierskie',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Kórnik',la:52.25,lo:17.08},{n:'Zbiornik Wągrowiec',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Wągrowiec',la:52.8,lo:17.2},{n:'Stawy Kobyla Góra',t:'paid',f:['Karp','Tołpyga','Lin'],c:'62 123 45 67',h:'7-18',l:'Kobyla Góra',la:51.07,lo:18.15},{n:'Gosp. Konin',t:'paid',f:['Karp','Sum','Amur'],c:'63 234 56 78',h:'6-20',l:'Konin',la:52.2,lo:18.27}],'lubuskie':[{n:'Jezioro Niesłysz',t:'pzw',f:['Szczupak','Karp','Węgorz','Lin'],h:'cały rok',l:'Niesłysz',la:52.23,lo:15.28},{n:'Jezioro Sława',t:'pzw',f:['Karp','Sum','Amur','Węgorz'],h:'cały rok',l:'Sława',la:51.88,lo:16.07},{n:'Gosp. Sława',t:'paid',f:['Karp','Sum','Amur'],c:'68 123 45 67',h:'6-20',l:'Sława',la:51.88,lo:16.07},{n:'Stawy Klenica',t:'paid',f:['Karp','Lin','Amur'],c:'68 234 56 78',h:'7-18',l:'Klenica',la:52.25,lo:15.18},{n:'Gosp. Zielona Góra',t:'paid',f:['Karp','Tołpyga','Sum'],c:'68 345 67 89',h:'6-20',l:'Zielona Góra',la:51.94,lo:15.51}],'pomorskie':[{n:'Jezioro Żarnowieckie',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Żarnowiec',la:54.73,lo:18.03},{n:'Jezioro Wdzydze',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Wdzidze',la:54.02,lo:17.95},{n:'Jezioro Raduńskie',t:'pzw',f:['Szczupak','Okon','Płotka'],h:'cały rok',l:'Kartuzy',la:54.33,lo:18.2},{n:'Gosp. Kartuzy',t:'paid',f:['Karp','Tołpyga','Lin'],c:'58 123 45 67',h:'6-21',l:'Kartuzy',la:54.33,lo:18.2},{n:'Stawy Przywidz',t:'paid',f:['Karp','Amur','Tołpyga'],c:'58 234 56 78',h:'7-19',l:'Przywidz',la:54.25,lo:18.4}],'kujawsko-pomorskie':[{n:'Jezioro Gopło',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Kruszwica',la:52.68,lo:18.32},{n:'Jezioro Szewnice',t:'pzw',f:['Szczupak','Okon','Płotka','Karp'],h:'cały rok',l:'Szewnice',la:53.38,lo:17.97},{n:'Jezioro Chełmżyńskie',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Chełmża',la:53.18,lo:18.43},{n:'Gosp. Bydgoszcz',t:'paid',f:['Karp','Lin','Amur'],c:'52 123 45 67',h:'6-21',l:'Bydgoszcz',la:53.12,lo:18.01},{n:'Stawy Toruń',t:'paid',f:['Karp','Tołpyga','Lin'],c:'56 234 56 78',h:'7-19',l:'Toruń',la:53.01,lo:18.6}],'warminsko-mazurskie':[{n:'Jezioro Mamry',t:'pzw',f:['Szczupak','Okon','Sielawa','Węgorz'],h:'cały rok',l:'Węgorzewo',la:54.22,lo:21.73},{n:'Jezioro Śniardwy',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Mikołajki',la:53.78,lo:21.73},{n:'Jezioro Niegocin',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Giżycko',la:54.03,lo:21.75},{n:'Jezioro Tałty',t:'pzw',f:['Pstrąg','Lipień','Karaś'],h:'cały rok',l:'Tałty',la:53.93,lo:21.75},{n:'Gosp. Giżycko',t:'paid',f:['Karp','Sum','Amur'],c:'87 123 45 67',h:'6-20',l:'Giżycko',la:54.03,lo:21.77},{n:'Stawy Ełk',t:'paid',f:['Karp','Lin','Amur'],c:'87 234 56 78',h:'7-19',l:'Ełk',la:53.83,lo:22.35}],'podlaskie':[{n:'Jezioro Hańcza',t:'pzw',f:['Sielawa','Sieja','Płotka','Szczupak'],h:'cały rok',l:'Hańcza',la:54.28,lo:22.82},{n:'Jezioro Wigry',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Wigry',la:54.08,lo:23.08},{n:'Jezioro Rajgród',t:'pzw',f:['Sielawa','Sieja','Płotka'],h:'cały rok',l:'Rajgród',la:53.73,lo:22.97},{n:'Gosp. Biebrza',t:'paid',f:['Karp','Amur','Lin'],c:'85 123 45 67',h:'7-18',l:'Biebrza',la:53.62,lo:22.68},{n:'Stawy Hajnówka',t:'paid',f:['Karp','Amur','Sum'],c:'85 234 56 78',h:'7-19',l:'Hajnówka',la:52.73,lo:23.58}],'mazowieckie':[{n:'Jezioro Zegrzyńskie',t:'pzw',f:['Szczupak','Okon','Leszcz','Węgorz'],h:'cały rok',l:'Zegrze',la:52.43,lo:20.88},{n:'Zbiornik Dębe',t:'pzw',f:['Szczupak','Karp','Płotka'],h:'cały rok',l:'Dębe',la:52.28,lo:21.15},{n:'Jezioro Łyso',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Mława',la:53.12,lo:20.37},{n:'Gosp. Włodawa',t:'paid',f:['Karp','Tołpyga','Lin'],c:'82 123 45 67',h:'7-19',l:'Włodawa',la:51.55,lo:23.55},{n:'Stawy Płock',t:'paid',f:['Karp','Amur','Tołpyga'],c:'24 234 56 78',h:'7-18',l:'Płock',la:52.55,lo:19.71}],'lodzkie':[{n:'Zbiornik Sulejowski',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Sulejów',la:51.35,lo:19.88},{n:'Stawy Rzgów',t:'paid',f:['Karp','Lin','Tołpyga'],c:'42 234 56 78',h:'7-18',l:'Rzgów',la:51.73,lo:19.45},{n:'Gosp. Łódź',t:'paid',f:['Karp','Amur','Sum'],c:'42 345 67 89',h:'6-20',l:'Łódź',la:51.76,lo:19.45},{n:'Jezioro Bugaj',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Radomsko',la:51.07,lo:19.45}],'lubelskie':[{n:'Zalew Zemborzycki',t:'pzw',f:['Karp','Leszcz','Szczupak','Węgorz'],h:'cały rok',l:'Lublin',la:51.25,lo:22.57},{n:'Stawy Uścimów',t:'paid',f:['Karp','Amur','Tołpyga','Lin'],c:'81 456 78 90',h:'7-19',l:'Uścimów',la:51.4,lo:22.95},{n:'Jezioro Piaseczno',t:'pzw',f:['Szczupak','Okon','Płotka'],h:'cały rok',l:'Piaseczno',la:51.03,lo:23.48},{n:'Gosp. Puławy',t:'paid',f:['Karp','Sum','Amur'],c:'81 567 89 01',h:'6-20',l:'Puławy',la:51.42,lo:21.97},{n:'Jezioro Łukie',t:'pzw',f:['Karp','Leszcz','Płotka','Węgorz'],h:'cały rok',l:'Łuków',la:51.93,lo:22.38}],'dolnoslaskie':[{n:'Stawy Milicz',t:'paid',f:['Karp','Leszcz','Płotka','Lin'],c:'71 123 45 67',h:'6-22',l:'Milicz',la:51.53,lo:17.27},{n:'Zbiornik Turawski',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Turawa',la:50.93,lo:18.1},{n:'Jezioro Bystrzyckie',t:'pzw',f:['Pstrąg','Karaś','Płotka'],h:'cały rok',l:'Bystrzyca',la:50.82,lo:16.65},{n:'Gosp. Wrocław',t:'paid',f:['Karp','Amur','Sum'],c:'71 234 56 78',h:'6-21',l:'Wrocław',la:51.1,lo:17.03},{n:'Stawy Dzierżoniów',t:'paid',f:['Karp','Tołpyga','Lin'],c:'74 345 67 89',h:'7-19',l:'Dzierżoniów',la:50.73,lo:16.62}],'opolskie':[{n:'Jezioro Nyskie',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Nysa',la:50.48,lo:17.33},{n:'Jezioro Otmuchowskie',t:'pzw',f:['Szczupak','Karp','Leszcz','Węgorz'],h:'cały rok',l:'Otmuchów',la:50.47,lo:17.18},{n:'Gosp. Opole',t:'paid',f:['Karp','Sum','Amur'],c:'77 123 45 67',h:'6-20',l:'Opole',la:50.64,lo:17.93},{n:'Stawy Kędzierzyn',t:'paid',f:['Karp','Tołpyga','Lin'],c:'77 234 56 78',h:'7-19',l:'Kędzierzyn-Koźle',la:50.34,lo:18.22}],'slaskie':[{n:'Zbiornik Łączany',t:'pzw',f:['Karp','Amur','Szczupak'],h:'cały rok',l:'Łączany',la:49.95,lo:18.85},{n:'Jezioro Żywieckie',t:'pzw',f:['Pstrąg','Karaś','Lipień'],h:'cały rok',l:'Żywiec',la:49.68,lo:19.18},{n:'Gosp. Katowice',t:'paid',f:['Karp','Sum','Tołpyga'],c:'32 123 45 67',h:'6-21',l:'Katowice',la:50.26,lo:19.02},{n:'Stawy Czechowice',t:'paid',f:['Karp','Lin','Tołpyga'],c:'32 234 56 78',h:'7-19',l:'Czechowice-Dziedzice',la:49.92,lo:19.02}],'swietokrzyskie':[{n:'Zbiornik Brody',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Brody',la:51.15,lo:20.65},{n:'Jezioro Świdnickie',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Świdnica',la:50.85,lo:16.48},{n:'Gosp. Kielce',t:'paid',f:['Karp','Amur','Sum'],c:'41 123 45 67',h:'6-20',l:'Kielce',la:50.87,lo:20.63},{n:'Stawy Ćmielów',t:'paid',f:['Karp','Amur'],c:'15 234 56 78',h:'8-18',l:'Ćmielów',la:50.88,lo:21.28}],'malopolskie':[{n:'Zbiornik Czchów',t:'pzw',f:['Pstrąg','Karaś','Płotka'],h:'cały rok',l:'Czchów',la:49.73,lo:20.7},{n:'Jezioro Rożnowskie',t:'pzw',f:['Pstrąg','Lipień','Karaś','Szczupak'],h:'cały rok',l:'Nowy Sącz',la:49.63,lo:20.7] ; v a r   a k t u a l n e = n u l l ; v a r   f i l t r = ' a l l ' ; v a r   w y b r a n e = n u l l ; f u n c t i o n   w y b i e r z W o j ( w ) { a k t u a l n e = w ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m a p a W i d o k ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' p u s t e ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' w s t e c z ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' t y t u l W o j ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' t y t u l W o j ' ) . i n n e r T e x t = ' L O W I S K A   -   ' + w . t o U p p e r C a s e ( ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' f i l t r y ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; r e n d e r ( ) ; } f u n c t i o n   w r o c ( ) { a k t u a l n e = n u l l ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m a p a W i d o k ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' p u s t e ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' w s t e c z ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' t y t u l W o j ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' f i l t r y ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' l i s t a ' ) . i n n e r H T M L = ' ' ; f i l t r = ' a l l ' ; d o c u m e n t . g e t E l e m e n t B y I d ( ' b t n W ' ) . c l a s s N a m e = ' b t n   a c t i v e ' ; d o c u m e n t . g e t E l e m e n t B y I d ( ' b t n P ' ) . c l a s s N a m e = ' b t n ' ; d o c u m e n t . g e t E l e m e n t B y I d ( ' b t n Z ' ) . c l a s s N a m e = ' b t n ' ; } f u n c t i o n   u s t a w F i l t r ( f ) { f i l t r = f ; d o c u m e n t . g e t E l e m e n t B y I d ( ' b t n W ' ) . c l a s s N a m e = ' b t n ' + ( f = = = ' a l l ' ? '   a c t i v e ' : ' ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' b t n P ' ) . c l a s s N a m e = ' b t n ' + ( f = = = ' p a i d ' ? '   a c t i v e ' : ' ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' b t n Z ' ) . c l a s s N a m e = ' b t n ' + ( f = = = ' p z w ' ? '   a c t i v e ' : ' ' ) ; r e n d e r ( ) ; } f u n c t i o n   r e n d e r ( ) { v a r   l = d o c u m e n t . g e t E l e m e n t B y I d ( ' l i s t a ' ) ; l . i n n e r H T M L = ' ' ; i f ( ! a k t u a l n e | | ! l o w i s k a [ a k t u a l n e ] ) r e t u r n ; v a r   a r r = l o w i s k a [ a k t u a l n e ] ; i f ( f i l t r ! = = ' a l l ' ) { a r r = a r r . f i l t e r ( f u n c t i o n ( x ) { r e t u r n   x . t = = = f i l t r ; } ) ; } a r r . f o r E a c h ( f u n c t i o n ( x , i ) { v a r   d = d o c u m e n t . c r e a t e E l e m e n t ( ' d i v ' ) ; d . c l a s s N a m e = ' I t e m ' ; d . i n n e r H T M L = ' < h 3 > ' + x . n + ' < / h 3 > < s p a n   c l a s s = \ 
- 
- t y p 
- 
- + x . t + 
- 
- \ > ' + ( x . t = = = ' p a i d ' ? ' P L A T N E ' : ' P Z W ' ) + ' < / s p a n > < p > ' + x . l + ' < / p > ' ; d . o n c l i c k = f u n c t i o n ( ) { p o k a z L o w i s k o ( i ) ; } ; l . a p p e n d C h i l d ( d ) ; } ) ; i f ( a r r . l e n g t h = = = 0 ) { l . i n n e r H T M L = ' < d i v   c l a s s = \ p u s t e \ > < p > B R A K   L O W I S K < / p > < / d i v > ' ; } } f u n c t i o n   p o k a z L o w i s k o ( i ) { v a r   a r r = l o w i s k a [ a k t u a l n e ] ; i f ( f i l t r ! = = ' a l l ' ) { a r r = a r r . f i l t e r ( f u n c t i o n ( x ) { r e t u r n   x . t = = = f i l t r ; } ) ; } w y b r a n e = a r r [ i ] ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T y t u l ' ) . i n n e r T e x t = w y b r a n e . n ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T y p ' ) . i n n e r T e x t = w y b r a n e . t = = = ' p a i d ' ? ' P L A T N E ' : ' P Z W ' ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T y p ' ) . c l a s s N a m e = ' t y p   ' + w y b r a n e . t ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d a l O b r a z ' ) . s t y l e . b a c k g r o u n d I m a g e = ' u r l ( ' + f i s h I m a g e s [ M a t h . f l o o r ( M a t h . r a n d o m ( ) * f i s h I m a g e s . l e n g t h ) ] + ' ) ' ; v a r   r y b y = ' ' ; f o r ( v a r   j = 0 ; j < w y b r a n e . f . l e n g t h ; j + + ) { r y b y + = ' < s p a n   c l a s s = \ t a g \ > ' + w y b r a n e . f [ j ] + ' < / s p a n > ' ; } d o c u m e n t . g e t E l e m e n t B y I d ( ' m R y b y ' ) . i n n e r H T M L = r y b y ; i f ( w y b r a n e . t = = = ' p a i d ' ) { d o c u m e n t . g e t E l e m e n t B y I d ( ' m K o n t a k t S e k c ' ) . c l a s s L i s t . r e m o v e ( ' h i d d e n ' ) ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m K o n t a k t ' ) . i n n e r T e x t = w y b r a n e . c ; } e l s e { d o c u m e n t . g e t E l e m e n t B y I d ( ' m K o n t a k t S e k c ' ) . c l a s s L i s t . a d d ( ' h i d d e n ' ) ; } d o c u m e n t . g e t E l e m e n t B y I d ( ' m G o d z i n y ' ) . i n n e r T e x t = w y b r a n e . h ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m L o k a l ' ) . i n n e r T e x t = w y b r a n e . l ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m T r a s a ' ) . h r e f = ' h t t p s : / / w w w . g o o g l e . c o m / m a p s / d i r / ? a p i = 1 & d e s t i n a t i o n = ' + w y b r a n e . l a + ' , ' + w y b r a n e . l o ; d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d a l ' ) . c l a s s L i s t . a d d ( ' a k t y w n a ' ) ; } f u n c t i o n   z a m k n i j M o d a l ( ) { d o c u m e n t . g e t E l e m e n t B y I d ( ' m o d a l ' ) . c l a s s L i s t . r e m o v e ( ' a k t y w n a ' ) ; } < / s c r i p t > < / b o d y > < / h t m l > 
- 
- < / s c r i p t >  
+var lowiska={'zachodniopomorskie':[{n:'Jezioro Dąbie',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Dąbie',la:53.38,lo:14.53},{n:'Jezioro Miedwie',t:'pzw',f:['Szczupak','Karp','Leszcz','Węgorz'],h:'cały rok',l:'Miedwie',la:53.32,lo:14.83},{n:'Jezioro Drawsko',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Drawsko',la:53.57,lo:15.82},{n:'Gosp. Szczecin',t:'paid',f:['Karp','Amur','Sum','Tołpyga'],c:'91 123 45 67',h:'6-21',l:'Szczecin',la:53.43,lo:14.55},{n:'Farma Trzebiatów',t:'paid',f:['Karp','Lin'],c:'94 234 56 78',h:'7-19',l:'Trzebiatów',la:54.07,lo:15.27}],'wielkopolskie':[{n:'Jezioro Maltańskie',t:'pzw',f:['Karp','Leszcz','Płotka','Lin'],h:'cały rok',l:'Poznań',la:52.4,lo:16.93},{n:'Jezioro Kierskie',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Kórnik',la:52.25,lo:17.08},{n:'Zbiornik Wągrowiec',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Wągrowiec',la:52.8,lo:17.2},{n:'Stawy Kobyla Góra',t:'paid',f:['Karp','Tołpyga','Lin'],c:'62 123 45 67',h:'7-18',l:'Kobyla Góra',la:51.07,lo:18.15},{n:'Gosp. Konin',t:'paid',f:['Karp','Sum','Amur'],c:'63 234 56 78',h:'6-20',l:'Konin',la:52.2,lo:18.27}],'lubuskie':[{n:'Jezioro Niesłysz',t:'pzw',f:['Szczupak','Karp','Węgorz','Lin'],h:'cały rok',l:'Niesłysz',la:52.23,lo:15.28},{n:'Jezioro Sława',t:'pzw',f:['Karp','Sum','Amur','Węgorz'],h:'cały rok',l:'Sława',la:51.88,lo:16.07},{n:'Gosp. Sława',t:'paid',f:['Karp','Sum','Amur'],c:'68 123 45 67',h:'6-20',l:'Sława',la:51.88,lo:16.07},{n:'Stawy Klenica',t:'paid',f:['Karp','Lin','Amur'],c:'68 234 56 78',h:'7-18',l:'Klenica',la:52.25,lo:15.18},{n:'Gosp. Zielona Góra',t:'paid',f:['Karp','Tołpyga','Sum'],c:'68 345 67 89',h:'6-20',l:'Zielona Góra',la:51.94,lo:15.51}],'pomorskie':[{n:'Jezioro Żarnowieckie',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Żarnowiec',la:54.73,lo:18.03},{n:'Jezioro Wdzydze',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Wdzidze',la:54.02,lo:17.95},{n:'Jezioro Raduńskie',t:'pzw',f:['Szczupak','Okon','Płotka'],h:'cały rok',l:'Kartuzy',la:54.33,lo:18.2},{n:'Gosp. Kartuzy',t:'paid',f:['Karp','Tołpyga','Lin'],c:'58 123 45 67',h:'6-21',l:'Kartuzy',la:54.33,lo:18.2},{n:'Stawy Przywidz',t:'paid',f:['Karp','Amur','Tołpyga'],c:'58 234 56 78',h:'7-19',l:'Przywidz',la:54.25,lo:18.4}],'kujawsko-pomorskie':[{n:'Jezioro Gopło',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Kruszwica',la:52.68,lo:18.32},{n:'Jezioro Szewnice',t:'pzw',f:['Szczupak','Okon','Płotka','Karp'],h:'cały rok',l:'Szewnice',la:53.38,lo:17.97},{n:'Jezioro Chełmżyńskie',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Chełmża',la:53.18,lo:18.43},{n:'Gosp. Bydgoszcz',t:'paid',f:['Karp','Lin','Amur'],c:'52 123 45 67',h:'6-21',l:'Bydgoszcz',la:53.12,lo:18.01},{n:'Stawy Toruń',t:'paid',f:['Karp','Tołpyga','Lin'],c:'56 234 56 78',h:'7-19',l:'Toruń',la:53.01,lo:18.6}],'warminsko-mazurskie':[{n:'Jezioro Mamry',t:'pzw',f:['Szczupak','Okon','Sielawa','Węgorz'],h:'cały rok',l:'Węgorzewo',la:54.22,lo:21.73},{n:'Jezioro Śniardwy',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Mikołajki',la:53.78,lo:21.73},{n:'Jezioro Niegocin',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Giżycko',la:54.03,lo:21.75},{n:'Jezioro Tałty',t:'pzw',f:['Pstrąg','Lipień','Karaś'],h:'cały rok',l:'Tałty',la:53.93,lo:21.75},{n:'Gosp. Giżycko',t:'paid',f:['Karp','Sum','Amur'],c:'87 123 45 67',h:'6-20',l:'Giżycko',la:54.03,lo:21.77},{n:'Stawy Ełk',t:'paid',f:['Karp','Lin','Amur'],c:'87 234 56 78',h:'7-19',l:'Ełk',la:53.83,lo:22.35}],'podlaskie':[{n:'Jezioro Hańcza',t:'pzw',f:['Sielawa','Sieja','Płotka','Szczupak'],h:'cały rok',l:'Hańcza',la:54.28,lo:22.82},{n:'Jezioro Wigry',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Wigry',la:54.08,lo:23.08},{n:'Jezioro Rajgród',t:'pzw',f:['Sielawa','Sieja','Płotka'],h:'cały rok',l:'Rajgród',la:53.73,lo:22.97},{n:'Gosp. Biebrza',t:'paid',f:['Karp','Amur','Lin'],c:'85 123 45 67',h:'7-18',l:'Biebrza',la:53.62,lo:22.68},{n:'Stawy Hajnówka',t:'paid',f:['Karp','Amur','Sum'],c:'85 234 56 78',h:'7-19',l:'Hajnówka',la:52.73,lo:23.58}],'mazowieckie':[{n:'Jezioro Zegrzyńskie',t:'pzw',f:['Szczupak','Okon','Leszcz','Węgorz'],h:'cały rok',l:'Zegrze',la:52.43,lo:20.88},{n:'Zbiornik Dębe',t:'pzw',f:['Szczupak','Karp','Płotka'],h:'cały rok',l:'Dębe',la:52.28,lo:21.15},{n:'Jezioro Łyso',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Mława',la:53.12,lo:20.37},{n:'Gosp. Włodawa',t:'paid',f:['Karp','Tołpyga','Lin'],c:'82 123 45 67',h:'7-19',l:'Włodawa',la:51.55,lo:23.55},{n:'Stawy Płock',t:'paid',f:['Karp','Amur','Tołpyga'],c:'24 234 56 78',h:'7-18',l:'Płock',la:52.55,lo:19.71}],'lodzkie':[{n:'Zbiornik Sulejowski',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Sulejów',la:51.35,lo:19.88},{n:'Stawy Rzgów',t:'paid',f:['Karp','Lin','Tołpyga'],c:'42 234 56 78',h:'7-18',l:'Rzgów',la:51.73,lo:19.45},{n:'Gosp. Łódź',t:'paid',f:['Karp','Amur','Sum'],c:'42 345 67 89',h:'6-20',l:'Łódź',la:51.76,lo:19.45},{n:'Jezioro Bugaj',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Radomsko',la:51.07,lo:19.45}],'lubelskie':[{n:'Zalew Zemborzycki',t:'pzw',f:['Karp','Leszcz','Szczupak','Węgorz'],h:'cały rok',l:'Lublin',la:51.25,lo:22.57},{n:'Stawy Uścimów',t:'paid',f:['Karp','Amur','Tołpyga','Lin'],c:'81 456 78 90',h:'7-19',l:'Uścimów',la:51.4,lo:22.95},{n:'Jezioro Piaseczno',t:'pzw',f:['Szczupak','Okon','Płotka'],h:'cały rok',l:'Piaseczno',la:51.03,lo:23.48},{n:'Gosp. Puławy',t:'paid',f:['Karp','Sum','Amur'],c:'81 567 89 01',h:'6-20',l:'Puławy',la:51.42,lo:21.97},{n:'Jezioro Łukie',t:'pzw',f:['Karp','Leszcz','Płotka','Węgorz'],h:'cały rok',l:'Łuków',la:51.93,lo:22.38}],'dolnoslaskie':[{n:'Stawy Milicz',t:'paid',f:['Karp','Leszcz','Płotka','Lin'],c:'71 123 45 67',h:'6-22',l:'Milicz',la:51.53,lo:17.27},{n:'Zbiornik Turawski',t:'pzw',f:['Szczupak','Okon','Węgorz','Karp'],h:'cały rok',l:'Turawa',la:50.93,lo:18.1},{n:'Jezioro Bystrzyckie',t:'pzw',f:['Pstrąg','Karaś','Płotka'],h:'cały rok',l:'Bystrzyca',la:50.82,lo:16.65},{n:'Gosp. Wrocław',t:'paid',f:['Karp','Amur','Sum'],c:'71 234 56 78',h:'6-21',l:'Wrocław',la:51.1,lo:17.03},{n:'Stawy Dzierżoniów',t:'paid',f:['Karp','Tołpyga','Lin'],c:'74 345 67 89',h:'7-19',l:'Dzierżoniów',la:50.73,lo:16.62}],'opolskie':[{n:'Jezioro Nyskie',t:'pzw',f:['Szczupak','Okon','Karp','Węgorz'],h:'cały rok',l:'Nysa',la:50.48,lo:17.33},{n:'Jezioro Otmuchowskie',t:'pzw',f:['Szczupak','Karp','Leszcz','Węgorz'],h:'cały rok',l:'Otmuchów',la:50.47,lo:17.18},{n:'Gosp. Opole',t:'paid',f:['Karp','Sum','Amur'],c:'77 123 45 67',h:'6-20',l:'Opole',la:50.64,lo:17.93},{n:'Stawy Kędzierzyn',t:'paid',f:['Karp','Tołpyga','Lin'],c:'77 234 56 78',h:'7-19',l:'Kędzierzyn-Koźle',la:50.34,lo:18.22}],'slaskie':[{n:'Zbiornik Łączany',t:'pzw',f:['Karp','Amur','Szczupak'],h:'cały rok',l:'Łączany',la:49.95,lo:18.85},{n:'Jezioro Żywieckie',t:'pzw',f:['Pstrąg','Karaś','Lipień'],h:'cały rok',l:'Żywiec',la:49.68,lo:19.18},{n:'Gosp. Katowice',t:'paid',f:['Karp','Sum','Tołpyga'],c:'32 123 45 67',h:'6-21',l:'Katowice',la:50.26,lo:19.02},{n:'Stawy Czechowice',t:'paid',f:['Karp','Lin','Tołpyga'],c:'32 234 56 78',h:'7-19',l:'Czechowice-Dziedzice',la:49.92,lo:19.02}],'swietokrzyskie':[{n:'Zbiornik Brody',t:'pzw',f:['Karp','Leszcz','Płotka'],h:'cały rok',l:'Brody',la:51.15,lo:20.65},{n:'Jezioro Świdnickie',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Świdnica',la:50.85,lo:16.48},{n:'Gosp. Kielce',t:'paid',f:['Karp','Amur','Sum'],c:'41 123 45 67',h:'6-20',l:'Kielce',la:50.87,lo:20.63},{n:'Stawy Ćmielów',t:'paid',f:['Karp','Amur'],c:'15 234 56 78',h:'8-18',l:'Ćmielów',la:50.88,lo:21.28}],'malopolskie':[{n:'Zbiornik Czchów',t:'pzw',f:['Pstrąg','Karaś','Płotka'],h:'cały rok',l:'Czchów',la:49.73,lo:20.7},{n:'Jezioro Rożnowskie',t:'pzw',f:['Pstrąg','Lipień','Karaś','Szczupak'],h:'cały rok',l:'Nowy Sącz',la:49.63,lo:20.7},{n:'Gosp. Kraków',t:'paid',f:['Karp','Sum','Amur'],c:'12 123 45 67',h:'6-21',l:'Kraków',la:50.06,lo:19.94},{n:'Stawy Okocim',t:'paid',f:['Karp','Amur','Sum'],c:'14 234 56 78',h:'6-22',l:'Okocim',la:49.95,lo:20.55}],'podkarpackie':[{n:'Jezioro Solińskie',t:'pzw',f:['Pstrąg','Lipień','Karaś','Szczupak'],h:'cały rok',l:'Solina',la:49.42,lo:22.48},{n:'Zbiornik Myczkowce',t:'pzw',f:['Pstrąg','Karaś','Lipień'],h:'cały rok',l:'Myczkowce',la:49.38,lo:22.38},{n:'Jezioro Lanc Korocka',t:'pzw',f:['Szczupak','Okon','Karp'],h:'cały rok',l:'Lanc',la:49.45,lo:22.65},{n:'Gosp. Rzeszów',t:'paid',f:['Karp','Amur','Sum'],c:'17 123 45 67',h:'6-20',l:'Rzeszów',la:50.04,lo:22},{n:'Stawy Zaleszany',t:'paid',f:['Karp','Amur','Tołpyga'],c:'17 234 56 78',h:'6-20',l:'Zaleszany',la:50.25,lo:21.65}]};
+var aktualne=null;
+var filtr='all';
+var wybrane=null;
+function wybierzWoj(w){aktualne=w;document.getElementById('mapaWidok').classList.add('hidden');document.getElementById('puste').classList.add('hidden');document.getElementById('wstecz').classList.remove('hidden');document.getElementById('tytulWoj').classList.remove('hidden');document.getElementById('tytulWoj').innerText='ŁOWISKA - '+w.toUpperCase();document.getElementById('filtry').classList.remove('hidden');render();}
+function wroc(){aktualne=null;document.getElementById('mapaWidok').classList.remove('hidden');document.getElementById('puste').classList.remove('hidden');document.getElementById('wstecz').classList.add('hidden');document.getElementById('tytulWoj').classList.add('hidden');document.getElementById('filtry').classList.add('hidden');document.getElementById('lista').innerHTML='';filtr='all';document.getElementById('btnW').className='btn active';document.getElementById('btnP').className='btn';document.getElementById('btnZ').className='btn';}
+function ustawFiltr(f){filtr=f;document.getElementById('btnW').className='btn'+(f==='all'?' active':'');document.getElementById('btnP').className='btn'+(f==='paid'?' active':'');document.getElementById('btnZ').className='btn'+(f==='pzw'?' active':'');render();}
+function render(){var l=document.getElementById('lista');l.innerHTML='';if(!aktualne||!lowiska[aktualne])return;var arr=lowiska[aktualne];if(filtr!=='all'){arr=arr.filter(function(x){return x.t===filtr;});}
+arr.forEach(function(x,i){var d=document.createElement('div');d.className='item';d.innerHTML='<h3>'+x.n+'</h3><span class="typ '+x.t+'">'+(x.t==='paid'?'PLATNE':'PZW')+'</span><p>'+x.l+'</p>';d.onclick=function(){pokazLowisko(i);};l.appendChild(d);});if(arr.length===0){l.innerHTML='<div class="puste"><p>BRAK LOWISK</p></div>';}}
+function pokazLowisko(i){var arr=lowiska[aktualne];if(filtr!=='all'){arr=arr.filter(function(x){return x.t===filtr;});}
+wybrane=arr[i];document.getElementById('mTytul').innerText=wybrane.n;document.getElementById('mTyp').innerText=wybrane.t==='paid'?'PLATNE':'PZW';document.getElementById('mTyp').className='typ '+wybrane.t;document.getElementById('modalObraz').style.backgroundImage='url('+fishImages[Math.floor(Math.random()*fishImages.length)]+')';var ryby='';for(var j=0;j<wybrane.f.length;j++){ryby+='<span class="tag">'+wybrane.f[j]+'</span>';}
+document.getElementById('mRyby').innerHTML=ryby;if(wybrane.t==='paid'){document.getElementById('mKontaktSekc').classList.remove('hidden');document.getElementById('mKontakt').innerText=wybrane.c;}else{document.getElementById('mKontaktSekc').classList.add('hidden');}
+document.getElementById('mGodziny').innerText=wybrane.h;document.getElementById('mLokal').innerText=wybrane.l;document.getElementById('mTrasa').href='https://www.google.com/maps/dir/?api=1&destination='+wybrane.la+','+wybrane.lo;document.getElementById('modal').classList.add('aktywna');}
+function zamknijModal(){document.getElementById('modal').classList.remove('aktywna');}< / s c r i p t >  
  < / b o d y > < / h t m l >  
  
