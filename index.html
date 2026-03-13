@@ -21,7 +21,6 @@ body{font-family:'Inter',system-ui,sans-serif;min-height:100vh;transition:all 0.
 .calendar-date{padding:8px;border:1px solid #ddd;cursor:pointer;font-size:0.9rem}
 .calendar-date:hover{background:#0f0}
 .calendar-date.today{background:#ff6b6b;color:#fff;border-color:#ff6b6b}
-.calendar-close{position:absolute;top:1rem;right:1rem;background:#fff;border:2px solid #000;width:30px;height:30px;cursor:pointer;font-weight:700}
 header{padding:1.5rem;text-align:center;font-weight:900;font-size:1.8rem;text-transform:uppercase;letter-spacing:2px}
 .map-box{padding:1.5rem;margin-bottom:1.5rem}
 .map-title{text-align:center;font-weight:700;font-size:1.2rem;margin-bottom:1rem}
@@ -114,7 +113,7 @@ text{font-size:6px;font-weight:700;text-anchor:middle;pointer-events:none}
 </head>
 <body class="neo">
 <div class="clock" id="clock">00:00:00</div>
-<button class="calendar-btn" onclick="toggleCalendar()">📅 Kalendarz</button>
+<button class="calendar-btn" onclick="toggleCalendar()">Kalendarz</button>
 <div class="calendar-modal" id="calendarModal" onclick="if(event.target===this)toggleCalendar()">
 <div class="calendar">
 <div class="calendar-header">KALENDARZ 2026</div>
@@ -165,10 +164,10 @@ text{font-size:6px;font-weight:700;text-anchor:middle;pointer-events:none}
 </div>
 <div id="modal" class="modal"><div class="okno"><button class="zamknij" onclick="zamknijModal()">X</button><div class="obraz" id="modalObraz"></div><div class="cialo"><h2 id="mTytul"></h2><span class="typ" id="mTyp"></span><div class="sekcja"><h4>🐟 RYBY</h4><div class="tagi" id="mRyby"></div></div><div class="sekcja hidden" id="mKontaktSekc"><h4>📞 KONTAKT</h4><p id="mKontakt"></p></div><div class="sekcja"><h4>🕐 GODZINY</h4><p id="mGodziny"></p></div><div class="sekcja"><h4>📍 LOKALIZACJA</h4><p id="mLokal"></p></div><a class="trasa" id="mTrasa" href="#" target="_blank">🧭 TRASA W GOOGLE MAPS</a></div></div></div>
 <script>
-function updateClock(){var now=new Date();document.getElementById('clock').innerText=now.toLocaleTimeString('pl-PL');}
+function updateClock(){document.getElementById('clock').innerText=new Date().toLocaleTimeString('pl-PL');}
 setInterval(updateClock,1000);updateClock();
-function toggleCalendar(){var modal=document.getElementById('calendarModal');modal.classList.toggle('aktywna');if(modal.classList.contains('aktywna')){renderCalendar();}}
-function renderCalendar(){var container=document.getElementById('calendarDates');container.innerHTML='';var months=['Styczen','Luty','Marzec','Kwiecien','Maj','Czerwiec','Lipiec','Sierpien','Wrzesien','Pazdziernik','Listopad','Grudzien'];var daysInMonth=[31,28,31,30,31,30,31,31,30,31,30,31];var firstDay=new Date(2026,0,1).getDay();if(firstDay===0)firstDay=7;for(var m=0;m<12;m++){var monthDiv=document.createElement('div');monthDiv.style.gridColumn='span 7';monthDiv.style.fontWeight='900';monthDiv.style.marginTop='10px';monthDiv.style.marginBottom='5px';monthDiv.innerText=months[m];container.appendChild(monthDiv);for(var d=0;d<daysInMonth[m];d++){var day=document.createElement('div');day.className='calendar-date';day.innerText=d+1;if(new Date(2026,m,d+1).toDateString()===new Date().toDateString()){day.classList.add('today');}day.onclick=function(){alert('Wybrano: '+this.innerText+' '+months[m]);};container.appendChild(day);}}}
+function toggleCalendar(){document.getElementById('calendarModal').classList.toggle('aktywna');renderCalendar();}
+function renderCalendar(){var c=document.getElementById('calendarDates');c.innerHTML='';var m=['Styczen','Luty','Marzec','Kwiecien','Maj','Czerwiec','Lipiec','Sierpien','Wrzesien','Pazdziernik','Listopad','Grudzien'];var d=[31,28,31,30,31,30,31,31,30,31,30,31];for(var i=0;i<12;i++){var mh=document.createElement('div');mh.style.gridColumn='span 7';mh.style.fontWeight='900';mh.style.marginTop='10px';mh.innerText=m[i];c.appendChild(mh);for(var j=1;j<=d[i];j++){var dd=document.createElement('div');dd.className='calendar-date';dd.innerText=j;dd.onclick=function(){alert('Wybrano: '+this.innerText+' '+m[i]);};c.appendChild(dd);}}}
 function changeStyle(style){document.body.className=style;localStorage.setItem('fishingStyle',style);}
 if(localStorage.getItem('fishingStyle')){document.body.className=localStorage.getItem('fishingStyle');document.querySelector('.style-selector select').value=localStorage.getItem('fishingStyle');}
 var fishImages=['https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=600','https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600','https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600','https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=600','https://images.unsplash.com/photo-1505506874110-6a7a69069a08?w=600','https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600'];
